@@ -20,3 +20,26 @@ products = SHEET.worksheet('Product List')
 data = products.get_all_values()
 
 print(data)
+
+def main_menu():
+    """
+    displays main menu for user
+    """
+    print("Welcome in Natures Oils Stok System")
+    print("Please select one of the options:/n")
+    print("1 - Goods in Update/n")
+    print("2 - Goods out Update/n")
+    print("3 - Updated product list")
+    print("4 - Finsh")
+
+
+def main():
+    """
+    Main function run the program
+    """
+    main_menu()
+
+
+main()
+
+ 
