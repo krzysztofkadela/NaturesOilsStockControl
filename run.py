@@ -31,6 +31,9 @@ def main_menu():
     print("2 - Goods out Update/n")
     print("3 - Updated product list")
     print("4 - Finsh")
+    user_choice = input("Whats you want to do? \n")
+    print(user_choice)
+
 
 
 def main():
