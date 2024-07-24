@@ -48,6 +48,24 @@ def update_stock_menu():
     print("3 - Stock correction.")
     print("4 - Stock Take")
     print("5 - Return to main menu.")
+    choice_2 = input("Please select: \n")
+    print(choice_2)
+
+
+
+def check_correct_input(choice, menu):
+    """
+    I check the correctness of the data entered by the user regarding the selection from the menu.
+    """
+    int[(choice)]
+    if(menu == update_stock_menu):
+        try:
+            if(menu <=0 and menu >5):
+                raise ValueError(
+                    print("Nie ma takiej opcji!!") 
+                )
+        except ValueError as e:
+            print("uppsss")
 
 
 
