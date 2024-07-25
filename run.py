@@ -25,15 +25,15 @@ def main_menu():
     """
     displays main menu for user
     """
-    print("Welcome in Natures Oils Stok System")
-    print("Please select one of the options:/n")
+    print("Welcome in Natures Oils Stock System")
+    print("Please select one of the options:")
     print("1 - Update stock")
     #print("1 - Goods in Update/n")
     #print("2 - Goods out Update/n")
     print("2 - Updated product list")
     print("3 - Production Report's")
     print("4 - Finsh")
-    user_choice = input("Whats you want to do? \n")
+    user_choice = input("Whats you want to do?")
     return user_choice
 
 def update_stock_menu():
@@ -41,21 +41,22 @@ def update_stock_menu():
     Update stock for all goods in and orders out.
     """
     print("U are to try update stock")
-    print("You have choice 'Update stock' option \n")
-    print("What you wants to update?:\n")
+    print("You have choice 'Update stock' option:")
+    print("What you wants to update?:")
     print("1 - Goods Out.")
     print("2 - Goods In.")
     print("3 - Stock correction.")
     print("4 - Stock Take")
     print("5 - Return to main menu.")
-    choice_2 = input("Please select: \n")
-    print(choice_2)
+    user_choice = input("Whats you want to do?")
+    return user_choice
+
 
 
 
 def check_correct_input(choice, menu):
     """
-    I check the correctness of the data entered by the user regarding the selection from the menu.
+    Checking correct input fromuser for menu functions.
     """
     int[(choice)]
     if(menu == update_stock_menu):
@@ -73,12 +74,33 @@ def main():
     """
     Main function run the program
     """
-    user_choice = main_menu()
-    
-    if(user_choice=='1'):
-        update_stock_menu()
+    while True:
+      choice = main_menu()
+      if choice == '1':
+         print("You chose Choice 1.")
+         while True:
+             choice_I = update_stock_menu()
+             if choice_I == '1':
+                print("You chose Choice 1.")
+             elif choice_I == '2':
+                 print("You chose Choice 2.")
+             elif choice_I == '3':
+                 print("You chose Choice 3.")
+             elif choice_I == '4':
+                   print("Exiting the menu. Goodbye!")
+                   break  # Exit the loop
+             else:
+                 print("Invalid choice. Please select a number between 1 and 4.")
+      elif choice == '2':
+         print("You chose Choice 2.")
+      elif choice == '3':
+         print("You chose Choice 3.")
+      elif choice == '4':
+        print("Exiting the menu. Goodbye!")
+        break  # Exit the loop
     else:
-        print("Wrong Choice")    
+        print("Invalid choice. Please select a number between 1 and 4.")
+        
         
 
 
