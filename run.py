@@ -82,6 +82,10 @@ def upddate_stock(choice, product_list):
     Updating stock, all option goods in goods out and corrections. 
     """
     if choice == "goods_out":
+        #getting current date.
+        current_date = datetime.now()
+        #converted to format day/month/year.
+        converted_date = current_date.strftime("%d-%m-%Y")
         data = ()
         for product in product_list:
             # asking user for correct input
@@ -93,7 +97,7 @@ def upddate_stock(choice, product_list):
                      # Attempt to convert the input to a float to handle numbers with decimals
                      numeric_value = int(value)
                      # If the conversion is successful, break the loop
-                     data += (product, numeric_value)
+                     data += (converted_date, product, numeric_value)
                      break
                   except ValueError:
                      # If conversion fails, print an error message
