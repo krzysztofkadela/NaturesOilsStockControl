@@ -23,7 +23,7 @@ data = products.get_all_records()
 df = pd.DataFrame(data)
 # Creating a list of products from the "Product Name" column.
 product_list = df['Product Name'].to_list()
-
+# list printed to the terminal.
 print(product_list)
 
 #data_1 = products.get_all_values()
@@ -37,8 +37,6 @@ def main_menu():
     print("Welcome in Natures Oils Stock System")
     print("Please select one of the options:")
     print("1 - Update stock")
-    #print("1 - Goods in Update/n")
-    #print("2 - Goods out Update/n")
     print("2 - Updated product list")
     print("3 - Production Report's")
     print("4 - Finsh")
@@ -81,11 +79,13 @@ def upddate_stock(choice, product_list):
     """
     Updating stock, all option goods in goods out and corrections. 
     """
+    #getting current date.
+    current_date = datetime.now()
+    #converted to format day/month/year.
+    converted_date = current_date.strftime("%d-%m-%Y")
+
     if choice == "goods_out":
-        #getting current date.
-        current_date = datetime.now()
-        #converted to format day/month/year.
-        converted_date = current_date.strftime("%d-%m-%Y")
+        
         data = ()
         for product in product_list:
             # asking user for correct input
@@ -94,7 +94,7 @@ def upddate_stock(choice, product_list):
                   # asking user for correct input
                   value = input(f"How many of {product} you wants to add to the stock?: ")
                   try:
-                     # Attempt to convert the input to a float to handle numbers with decimals
+                     # Attempt to convert the input to a intager.
                      numeric_value = int(value)
                      # If the conversion is successful, break the loop
                      data += (converted_date, product, numeric_value)
