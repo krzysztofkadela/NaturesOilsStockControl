@@ -84,20 +84,21 @@ def upddate_stock(choice, product_list):
     if choice == "goods_out":
         data = ()
         for product in product_list:
+            # asking user for correct input
+            print("Please enter a numeric value for all products quantity.")
             while True:
                   # asking user for correct input
-                  print("Please enter a numeric value for all products quantity.")
-                  value = input(f"How many of {num[0]} you wants to add to the stock?: ")
+                  value = input(f"How many of {product} you wants to add to the stock?: ")
                   try:
                      # Attempt to convert the input to a float to handle numbers with decimals
-                     numeric_value = float(value)
+                     numeric_value = int(value)
                      # If the conversion is successful, break the loop
-                     results += (product, numeric_value)
+                     data += (product, numeric_value)
                      break
                   except ValueError:
                      # If conversion fails, print an error message
                      print("Wrong value. Please enter a valid number.")
-    return results
+    return data
 
         
 
@@ -142,6 +143,10 @@ def main():
         
 
 
-main()
+#main()
+
+resuly_tuple = upddate_stock("goods_out", product_list)
+
+print("Collected values: ", resuly_tuple)
 
  
