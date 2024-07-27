@@ -100,8 +100,15 @@ def upddate_stock(choice, product_list):
                      print("Wrong value. Please enter a valid number.")
     return data
 
-        
 
+def update_worksheet(data, worksheet):
+    """
+    By geting data and worksheet updates appropriate spreadsheet.
+    """
+    print(f"Updating {worksheet} worksheet...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f"{worksheet} worksheet updated successfully\n")
     
     
 
