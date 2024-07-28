@@ -61,19 +61,28 @@ def update_stock_menu():
 
 
 
-def check_correct_input(choice, menu):
+def check_correct_input(choice):
     """
-    Checking correct input fromuser for menu functions.
+    Checking correct input from user for menu functions.
     """
-    int[(choice)]
-    if(menu == update_stock_menu):
-        try:
-            if(menu <=0 and menu >5):
-                raise ValueError(
-                    print("Nie ma takiej opcji!!") 
-                )
-        except ValueError as e:
-            print("uppsss")
+    if choice < 1 or choice > 5:
+        print("Parameter must be between 1 and 5.")
+        return False
+
+    user_input = input(f"Please enter an integer between 1 and {choice}: ")
+
+    try:
+        user_input = int(user_input)
+        if 1 <= user_input <= choice:
+            print("Valid input!")
+            return True
+        else:
+            print("Invalid input. Please enter a number within the specified range.")
+            return False
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
+        return False        
+    
 
 def upddate_stock(choice, product_list):
     """
