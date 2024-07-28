@@ -84,12 +84,14 @@ def upddate_stock(choice, product_list):
     #converted to format day/month/year.
     converted_date = current_date.strftime("%d-%m-%Y")
 
-    if choice == "goods_out":
+    if choice == "goods_in":
         
-        data = ()
+        data_in = ()
+        # asking user for correct input
+        print("Please enter a numeric value for all products quantity.")
+
         for product in product_list:
-            # asking user for correct input
-            print("Please enter a numeric value for all products quantity.")
+            
             while True:
                   # asking user for correct input
                   value = input(f"How many of {product} you wants to add to the stock?: ")
@@ -97,12 +99,32 @@ def upddate_stock(choice, product_list):
                      # Attempt to convert the input to a intager.
                      numeric_value = int(value)
                      # If the conversion is successful, break the loop
-                     data += (converted_date, product, numeric_value)
+                     data_in += (converted_date, product, numeric_value)
                      break
                   except ValueError:
                      # If conversion fails, print an error message
                      print("Wrong value. Please enter a valid number.")
-    return data
+        return data_in
+    elif choice == "goods_out":
+        data_out = ()
+        # asking user for correct input
+        print("Please enter a numeric value for all products quantity.")
+
+        for product in product_list:
+            
+            while True:
+                  # asking user for correct input
+                  value = input(f"How many of {product} was send out to customers?: ")
+                  try:
+                     # Attempt to convert the input to a intager.
+                     numeric_value = int(value)
+                     # If the conversion is successful, break the loop
+                     data_out += (converted_date, product, numeric_value)
+                     break
+                  except ValueError:
+                     # If conversion fails, print an error message
+                     print("Wrong value. Please enter a valid number.")
+        return data_out
 
 
 def update_worksheet(data, worksheet):
@@ -156,8 +178,10 @@ def main():
 
 #main()
 
-resuly_tuple = upddate_stock("goods_out", product_list)
+resuly_tuple_in = upddate_stock("goods_in", product_list)
+resuly_tuple_out = upddate_stock("goods_out", product_list)
 
-print("Collected values: ", resuly_tuple)
+print("Collected values: ", resuly_tuple_in)
+print("Collected values: ", resuly_tuple_out)
 
  
