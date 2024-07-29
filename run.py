@@ -158,7 +158,9 @@ def main():
          while True:
              choice_I = update_stock_menu()
              if choice_I == '1':
-                print("You chose Choice 1.")
+                #choice 1 updtate product doods in
+                data_in = upddate_stock("goods_in", product_list)
+                print(f"You data is: {data_in}")
              elif choice_I == '2':
                  print("You chose Choice 2.")
              elif choice_I == '3':
@@ -185,12 +187,12 @@ def main():
         
 
 
-#main()
+main()
 
-resuly_tuple_in = upddate_stock("goods_in", product_list)
-resuly_tuple_out = upddate_stock("goods_out", product_list)
+#resuly_tuple_in = upddate_stock("goods_in", product_list)
+#resuly_tuple_out = upddate_stock("goods_out", product_list)
 
-print("Collected values: ", resuly_tuple_in)
-print("Collected values: ", resuly_tuple_out)
+#print("Collected values: ", resuly_tuple_in)
+#print("Collected values: ", resuly_tuple_out)
 
  
