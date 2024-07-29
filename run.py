@@ -90,12 +90,12 @@ def upddate_stock(choice, product_list):
     """
     #getting current date.
     current_date = datetime.now()
-    #converted to format day/month/year.
-    converted_date = current_date.strftime("%d-%m-%Y")
+    #converted to format "YYYY-MM-DD".
+    converted_date = current_date.strftime("%Y-%m-%d")
 
     if choice == "goods_in":
         
-        data_in = ()
+        data_in = []
         # asking user for correct input
         print("Please enter a numeric value for all products quantity.")
 
@@ -108,14 +108,15 @@ def upddate_stock(choice, product_list):
                      # Attempt to convert the input to a intager.
                      numeric_value = int(value)
                      # If the conversion is successful, break the loop
-                     data_in += (converted_date, product, numeric_value)
+                     data_in.append((converted_date, product, numeric_value))
                      break
                   except ValueError:
                      # If conversion fails, print an error message
                      print("Wrong value. Please enter a valid number.")
-        return data_in
+
+        return tuple(data_in) #convert list to tuple before return.
     elif choice == "goods_out":
-        data_out = ()
+        data_out = []
         # asking user for correct input
         print("Please enter a numeric value for all products quantity.")
 
@@ -128,12 +129,12 @@ def upddate_stock(choice, product_list):
                      # Attempt to convert the input to a intager.
                      numeric_value = int(value)
                      # If the conversion is successful, break the loop
-                     data_out += (converted_date, product, numeric_value)
+                     data_out.append((converted_date, product, numeric_value))
                      break
                   except ValueError:
                      # If conversion fails, print an error message
                      print("Wrong value. Please enter a valid number.")
-        return data_out
+        return tuple(data_out)
 
 
 def update_worksheet(data, worksheet):
@@ -142,8 +143,21 @@ def update_worksheet(data, worksheet):
     """
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
-    worksheet_to_update.append_row(data)
-    print(f"{worksheet} worksheet updated successfully\n")
+    for record in data:
+        # Ensure the record is a flat list with string representation for writing
+        record_as_list = [str(value) if not isinstance(value, (int, float)) else value for value in record]
+        
+        # Print for debugging purposes
+        print(f"Appending record: {record_as_list}")  # Check the data format
+
+        try:
+            worksheet_to_update.append_row(record_as_list)
+            print(f"Successfully appended record: {record_as_list}")  # Confirmation of success
+        except Exception as e:
+            print(f"Failed to append record {record_as_list} due to error: {e}")
+    #for record in data:
+          #worksheet_to_update.append_row(data)
+    #print(f"{worksheet} worksheet updated successfully\n")
     
     
 
@@ -158,11 +172,14 @@ def main():
          while True:
              choice_I = update_stock_menu()
              if choice_I == '1':
-                #choice 1 updtate product doods in
+                #choice 1 updtate product goods in
                 data_in = upddate_stock("goods_in", product_list)
-                print(f"You data is: {data_in}")
+                print(data_in)
+                update_worksheet(data_in, "Product Goods In")
              elif choice_I == '2':
-                 print("You chose Choice 2.")
+                #choice 2 update product goods out
+                data_out = upddate_stock("goods_out", product_list)
+                print(f"You data is: {data_out}")
              elif choice_I == '3':
                  print("You chose Choice 3.")
              elif choice_I == '4':
@@ -184,15 +201,23 @@ def main():
          print("Invalid choice. Please select a number between 1 and 4.\n")
          print("Please select one number from 1 to 4 and pres enter! ")
         
-        
+    
+#main()
+
+data_to_insert = (
+    ("2024-07-01", "Product A", 10),
+    ("2024-07-02", "Product B", 20),
+    ("2024-07-03", "Product C", 30),
+    ("2024-07-04", "Product D", 40),
+    ("2024-07-05", "Product E", 50),
+    ("2024-07-06", "Product F", 60),
+)
 
 
-main()
 
 #resuly_tuple_in = upddate_stock("goods_in", product_list)
+update_worksheet(data_to_insert, "Product Goods In")
+
+
 #resuly_tuple_out = upddate_stock("goods_out", product_list)
 
-#print("Collected values: ", resuly_tuple_in)
-#print("Collected values: ", resuly_tuple_out)
-
- 
