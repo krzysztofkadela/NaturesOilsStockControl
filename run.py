@@ -204,19 +204,30 @@ def main():
     
 #main()
 
-data_to_insert = (
-    ("2024-07-01", "Product A", 10),
-    ("2024-07-02", "Product B", 20),
-    ("2024-07-03", "Product C", 30),
-    ("2024-07-04", "Product D", 40),
-    ("2024-07-05", "Product E", 50),
-    ("2024-07-06", "Product F", 60),
-)
+
+def update_test(data, worksheet):
+    """
+    By geting data and worksheet updates appropriate spreadsheet.
+    """
+    """
+    Receives a list of integers to be inserted into a worksheet
+    Update the relevant worksheet with the data provided
+    """
+    print(f"Updating {worksheet} worksheet...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f"{worksheet} worksheet updated successfully\n")
+   
+data_to = ['2024-07-01', 'Dummy Product', 10]
 
 
+#worksheet = SHEET.worksheet("Product Good In")
 
+#worksheet.append_row(['2024-07-01', 'Dummy Product', 10])
+
+update_test(data_to, "Product Good In")
 #resuly_tuple_in = upddate_stock("goods_in", product_list)
-update_worksheet(data_to_insert, "Product Goods In")
+#update_worksheet(data_to_insert, "Product Goods In")
 
 
 #resuly_tuple_out = upddate_stock("goods_out", product_list)
