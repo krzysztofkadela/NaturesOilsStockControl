@@ -108,7 +108,11 @@ def upddate_stock(choice, product_list):
                      # Attempt to convert the input to a intager.
                      numeric_value = int(value)
                      # If the conversion is successful, break the loop
+                     data = [converted_date, product, numeric_value]
                      data_in.append((converted_date, product, numeric_value))
+                     #inserting value to spread sheet one by one
+                     update_test(data, "Product Good In")
+                     print(data)
                      break
                   except ValueError:
                      # If conversion fails, print an error message
@@ -200,10 +204,6 @@ def main():
       else:
          print("Invalid choice. Please select a number between 1 and 4.\n")
          print("Please select one number from 1 to 4 and pres enter! ")
-        
-    
-#main()
-
 
 def update_test(data, worksheet):
     """
@@ -215,8 +215,17 @@ def update_test(data, worksheet):
     """
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
-    worksheet_to_update.append_row(data)
+    for record in data:
+        worksheet_to_update.append_row(data)
     print(f"{worksheet} worksheet updated successfully\n")
+
+
+
+    
+main()
+
+
+
    
 data_to = ['2024-07-01', 'Dummy Product', 10]
 
@@ -224,9 +233,9 @@ data_to = ['2024-07-01', 'Dummy Product', 10]
 #worksheet = SHEET.worksheet("Product Good In")
 
 #worksheet.append_row(['2024-07-01', 'Dummy Product', 10])
-
-update_test(data_to, "Product Good In")
 #resuly_tuple_in = upddate_stock("goods_in", product_list)
+#update_test(data_to, "Product Good In")
+
 #update_worksheet(data_to_insert, "Product Goods In")
 
 
