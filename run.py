@@ -160,7 +160,48 @@ def update_worksheet(data, worksheet):
           #worksheet_to_update.append_row(data)
     #print(f"{worksheet} worksheet updated successfully\n")
     
+def add_new_product():
+    """
+    Asking user for updates product list, user can add new products, all information are 
+    store in the dictionary and return from function.
+    """
+    print("Welcom in new product adding scope!")
+    print("Please fill product name , size and barcode, barcode new to have 13 digits!")
+
+    # Collecting current date and formating to neede format YYYY-MM-DD.
+    current_date_load = datetime.now()
+    current_date_new_product = current_date_load.strftime("%Y-%m-%d")
+
+    # New Product fill by user.
+    new_product_name = input("Please enter a new product name: \n")
+
+    # New Product size from user:
     
+    new_product_size = input("Please enter new product size: \n")
+
+    # while loop to check are barcode enetered hev 13 digits.
+    while True:
+
+        barcode = input("Please enter a 13-digit barcode: \n")
+
+        # checking is barcode enetred valid.
+        if len(barcode) == 13 and barcode.isdigit():
+            break
+        else:
+            print("Invalid barcode, please enter 13-digit barcode")
+
+    # Creating dictonary with collected data
+
+    new_product_info = {
+        "current_date": current_date_new_product,
+        "product_name": new_product_name,
+        "product_size": new_product_size,
+        "barcode": barcode
+    }
+
+    return new_product_info      
+
+
 
 def main():
     """
@@ -206,9 +247,10 @@ def main():
 
     
 #main()
+new = add_new_product()
+print(new)
 
 
+#user_input_test = get_valid_choice(5)
 
-user_input_test = get_valid_choice(5)
-
-print(user_input_test)
+#print(user_input_test)
