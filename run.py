@@ -51,20 +51,22 @@ def get_valid_choice(menu_option):
 
 def main_menu():
     """
-    displays main menu for user
+    Displays "Main Menu" for user, ask to make a choice, check the choice and if is valid,
+    returns value.
     """
+    #Printing options for user.
     print("Welcome in Natures Oils Stock System")
     print("Please select one of the options:")
     print("1 - Update stock")
     print("2 - Updated product list")
     print("3 - Production Report's")
     print("4 - Finsh")
-    user_choice = input("Whats you want to do \n?")
+    user_choice = input("Whats you want to do \n?") 
     return user_choice
 
 def update_stock_menu():
     """
-    Displey "Menu" Update stock for all goods in and orders out.
+    Displeys "Update stock Menu" for all goods in and orders out.
     """
     print("U are to try update stock")
     print("You have choice 'Update stock' option:")
@@ -84,28 +86,28 @@ def upddate_stock(choice, product_list):
     """
     Updating stock, all option goods in goods out and corrections. 
     """
-    #getting current date.
+    #Getting current date.
     current_date = datetime.now()
-    #converted to format "YYYY-MM-DD".
+
+    #Converted to format "YYYY-MM-DD".
     converted_date = current_date.strftime("%Y-%m-%d")
 
-    if choice == "goods_in":
+    if choice == "goods_in":#For Goods In option 
         
         data_in = []
-        # asking user for correct input
+        # Asking user for correct input
         print("Please enter a numeric value for all products quantity.")
 
-        for product in product_list:
+        for product in product_list:#Getting values from product_list varible , products imported from worksheet.
             
             while True:
-                  # asking user for correct input
+                  # Getting values for each product from user.
                   value = input(f"How many of {product} you wants to add to the stock?: ")
                   try:
                      # Attempt to convert the input to a intager.
                      numeric_value = int(value)
                      # If the conversion is successful, break the loop
                      data_in.append((converted_date, product, numeric_value))
-                     #inserting value to spread sheet one by one
                      break
                   except ValueError:
                      # If conversion fails, print an error message
