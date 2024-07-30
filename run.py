@@ -50,9 +50,9 @@ def update_stock_menu():
     print("U are to try update stock")
     print("You have choice 'Update stock' option:")
     print("What you wants to update?:")
-    print("1 - Goods Out.")
-    print("2 - Goods In.")
-    print("3 - Stock correction.")
+    print("1 - Goods In.")
+    print("2 - Goods Out.")
+    print("3 - Stock Correction.")
     print("4 - Stock Take")
     print("5 - Return to main menu.")
     user_choice = input("Whats you want to do?\n")
@@ -182,7 +182,8 @@ def main():
              elif choice_I == '2':
                 #choice 2 update product goods out
                 data_out = upddate_stock("goods_out", product_list)
-                print(f"You data is: {data_out}")
+                update_worksheet(data_out, "Product Good Out")
+                #print(f"You data is: {data_out}")
              elif choice_I == '3':
                  print("You chose Choice 3.")
              elif choice_I == '4':
