@@ -205,39 +205,11 @@ def main():
          print("Invalid choice. Please select a number between 1 and 4.\n")
          print("Please select one number from 1 to 4 and pres enter! ")
 
-def update_test(data, worksheet):
-    """
-    By geting data and worksheet updates appropriate spreadsheet.
-    """
-    """
-    Receives a list of integers to be inserted into a worksheet
-    Update the relevant worksheet with the data provided
-    """
-    print(f"Updating {worksheet} worksheet...\n")
-    worksheet_to_update = SHEET.worksheet(worksheet)
-    for record in data:
-        worksheet_to_update.append_row(data)
-    print(f"{worksheet} worksheet updated successfully\n")
-
-
 
     
 main()
 
 
 
-   
-#data_to = ['2024-07-01', 'Dummy Product', 10]
 
-
-#worksheet = SHEET.worksheet("Product Good In")
-
-#worksheet.append_row(['2024-07-01', 'Dummy Product', 10])
-#resuly_tuple_in = upddate_stock("goods_in", product_list)
-#update_test(data_to, "Product Good In")
-
-#update_worksheet(data_to_insert, "Product Goods In")
-
-
-#resuly_tuple_out = upddate_stock("goods_out", product_list)
 
