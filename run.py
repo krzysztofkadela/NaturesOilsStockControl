@@ -201,6 +201,21 @@ def add_new_product():
 
     return new_product_info      
 
+def update_worksheet_new_product(new_product,worksheet):
+    """
+    Taking paramiter with new product info and updating 'Product list' worksheet.
+    """
+    print(f"Updating {worksheet} worksheet...\n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+
+    # Creating list of data to be added to worksheet
+
+    row = [new_product["current_date"], new_product["product_name"], new_product["product_size"], new_product["barcode"]]
+
+    worksheet_to_update.append_row(row)
+
+    print("Product list have be updated!")
+
 
 
 def main():
@@ -249,7 +264,7 @@ def main():
 #main()
 new = add_new_product()
 print(new)
-
+update_worksheet_new_product(new,"Product List")
 
 #user_input_test = get_valid_choice(5)
 
