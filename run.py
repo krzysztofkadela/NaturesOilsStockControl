@@ -108,17 +108,15 @@ def upddate_stock(choice, product_list):
                      # Attempt to convert the input to a intager.
                      numeric_value = int(value)
                      # If the conversion is successful, break the loop
-                     data = [converted_date, product, numeric_value]
                      data_in.append((converted_date, product, numeric_value))
                      #inserting value to spread sheet one by one
-                     update_test(data, "Product Good In")
-                     print(data)
                      break
                   except ValueError:
                      # If conversion fails, print an error message
                      print("Wrong value. Please enter a valid number.")
 
-        return tuple(data_in) #convert list to tuple before return.
+        #return tuple(data_in) #convert list to tuple before return.
+        return data_in
     elif choice == "goods_out":
         data_out = []
         # asking user for correct input
@@ -138,7 +136,8 @@ def upddate_stock(choice, product_list):
                   except ValueError:
                      # If conversion fails, print an error message
                      print("Wrong value. Please enter a valid number.")
-        return tuple(data_out)
+        #return tuple(data_out)
+        return data_out
 
 
 def update_worksheet(data, worksheet):
@@ -179,7 +178,7 @@ def main():
                 #choice 1 updtate product goods in
                 data_in = upddate_stock("goods_in", product_list)
                 print(data_in)
-                update_worksheet(data_in, "Product Goods In")
+                update_worksheet(data_in, "Product Good In")
              elif choice_I == '2':
                 #choice 2 update product goods out
                 data_out = upddate_stock("goods_out", product_list)
@@ -227,7 +226,7 @@ main()
 
 
    
-data_to = ['2024-07-01', 'Dummy Product', 10]
+#data_to = ['2024-07-01', 'Dummy Product', 10]
 
 
 #worksheet = SHEET.worksheet("Product Good In")
