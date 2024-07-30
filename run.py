@@ -30,6 +30,25 @@ print(product_list)
 
 #print(data_1)
 
+def get_valid_choice(menu_option):
+    """
+    Prompts the user to enter a choice between 1 and 5.
+    Returns the valid choice if input is valid, otherwise None.
+    """
+    while True:  # Loop until valid input is received
+        user_input = input("Please enter an integer between 1 and 5: ")
+
+        try:
+            user_input = int(user_input)  # Try to convert the input to an integer
+            if 1 <= user_input <= menu_option:  # Check if the value is between 1 and 5
+                return user_input  # Return the valid input
+            else:
+                print("Invalid input. Please enter a number between 1 and 5.")
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
+
+
+
 def main_menu():
     """
     displays main menu for user
@@ -45,7 +64,7 @@ def main_menu():
 
 def update_stock_menu():
     """
-    Update stock for all goods in and orders out.
+    Displey "Menu" Update stock for all goods in and orders out.
     """
     print("U are to try update stock")
     print("You have choice 'Update stock' option:")
@@ -55,34 +74,11 @@ def update_stock_menu():
     print("3 - Stock Correction.")
     print("4 - Stock Take")
     print("5 - Return to main menu.")
-    user_choice = input("Whats you want to do?\n")
-    return user_choice
+    #function to check valid user choice, asigning value to varible user_choice_stock_menu
+    user_choice_stock_menu = get_valid_choice(5)
+    #return valid user choice
+    return user_choice_stock_menu
 
-
-
-
-def check_correct_input(choice):
-    """
-    Checking correct input from user for menu functions.
-    """
-    if choice < 1 or choice > 5:
-        print("Parameter must be between 1 and 5.")
-        return False
-
-    user_input = input(f"Please enter an integer between 1 and {choice}: ")
-
-    try:
-        user_input = int(user_input)
-        if 1 <= user_input <= choice:
-            print("Valid input!")
-            return True
-        else:
-            print("Invalid input. Please enter a number within the specified range.")
-            return False
-    except ValueError:
-        print("Invalid input. Please enter a valid integer.")
-        return False        
-    
 
 def upddate_stock(choice, product_list):
     """
@@ -207,9 +203,10 @@ def main():
 
 
     
-main()
+#main()
 
 
 
+user_input_test = get_valid_choice(5)
 
-
+print(user_input_test)
