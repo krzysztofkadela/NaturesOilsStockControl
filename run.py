@@ -36,7 +36,7 @@ def get_valid_choice(menu_option):
     Returns the valid choice if input is valid, otherwise None.
     """
     while True:  # Loop until valid input is received
-        user_input = input("Please enter an integer between 1 and 5: ")
+        user_input = input("Please enter an integer between 1 and 5: \n")
 
         try:
             user_input = int(user_input)  # Try to convert the input to an integer
@@ -61,7 +61,7 @@ def main_menu():
     print("2 - Updated product list")
     print("3 - Production Report's")
     print("4 - Finsh")
-    user_choice = input("Whats you want to do \n?") 
+    user_choice = input("Whats you want to do? \n") 
     return user_choice
 
 def update_stock_menu():
@@ -102,7 +102,7 @@ def upddate_stock(choice, product_list):
             
             while True:
                   # Getting values for each product from user.
-                  value = input(f"How many of {product} you wants to add to the stock?: ")
+                  value = input(f"How many of {product} you wants to add to the stock?: \n")
                   try:
                      # Attempt to convert the input to a intager.
                      numeric_value = int(value)
@@ -124,7 +124,7 @@ def upddate_stock(choice, product_list):
             
             while True:
                   # asking user for correct input
-                  value = input(f"How many of {product} was send out to customers?: ")
+                  value = input(f"How many of {product} was send out to customers?: \n")
                   try:
                      # Attempt to convert the input to a intager.
                      numeric_value = int(value)
@@ -149,7 +149,7 @@ def update_worksheet(data, worksheet):
         record_as_list = [str(value) if not isinstance(value, (int, float)) else value for value in record]
         
         # Print for debugging purposes
-        print(f"Appending record: {record_as_list}")  # Check the data format
+        print(f"Appending record: {record_as_list}\n")  # Check the data format(added \n Statment!!!!!!!!!!!)
 
         try:
             worksheet_to_update.append_row(record_as_list)
