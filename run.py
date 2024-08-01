@@ -26,9 +26,6 @@ product_list = df['Product Name'].to_list()
 # list printed to the terminal.
 print(product_list)
 
-#data_1 = products.get_all_values()
-
-#print(data_1)
 
 def get_valid_choice(menu_option):
     """
@@ -61,8 +58,8 @@ def main_menu():
     print("2 - Updated product list")
     print("3 - Production Report's")
     print("4 - Finsh")
-    user_choice = input("Whats you want to do? \n") 
-    return user_choice
+    user_choice_main_menu = input("Whats you want to do? \n") 
+    return user_choice_main_menu
 
 def update_stock_menu():
     """
@@ -165,8 +162,15 @@ def add_new_product():
     Asking user for updates product list, user can add new products, all information are 
     store in the dictionary and return from function.
     """
-    print("Welcom in new product adding scope!")
-    print("Please fill product name , size and barcode, barcode new to have 13 digits!")
+    print("      Welcome to the new product addition section.")
+    print("--------------------------------------------------------------")
+    print("Please provide information according to the requirements below")
+    print("--------------------------------------------------------------")
+    print("  Product Name maximum 20 characters, only contain letters allow to use space to separate worlds")
+    print("--------------------------------------------------------------")
+    print("       Product size only from size options provided!")
+    print("--------------------------------------------------------------")
+    print("           Barode 13 digits and only digits.")
 
     # Collecting current date and formating to neede format YYYY-MM-DD.
     current_date_load = datetime.now()
@@ -175,9 +179,21 @@ def add_new_product():
     # New Product fill by user.
     new_product_name = input("Please enter a new product name: \n")
 
+    # Validatting  product name inserted by user.
+    while len(new_product_name) > 20 or not all(char.isalpha() or char.isspace() for char in new_product_name) : #Max 20 characters and only letters and spaces.
+        print("Error: Product name must be at most 20 characters long and contain only letters.")
+        new_product_name = input("Please enter a new product name: \n")
+
     # New Product size from user:
+    valid_sizes = ['220ml', '450ml', '860ml', '4.5L', '10L']  #list of evelible products sizes.
     
+    print(f"Available sizes:{valid_sizes} ")
     new_product_size = input("Please enter new product size: \n")
+
+    # Validate product size
+    while new_product_size not in valid_sizes:
+        print("Error: Please enter a valid product size.")
+        new_product_size = input("Please enter new product size (options: 220ml, 450ml, 860ml, 4.5L, 10L): \n")
 
     # while loop to check are barcode enetered hev 13 digits.
     while True:
