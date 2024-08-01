@@ -1,6 +1,7 @@
 # Your code goes here.
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
+import time
 import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
@@ -163,12 +164,16 @@ def add_new_product():
     store in the dictionary and return from function.
     """
     print("      Welcome to the new product addition section.")
+    time.sleep(3)
     print("--------------------------------------------------------------")
     print("Please provide information according to the requirements below")
+    time.sleep(3)
     print("--------------------------------------------------------------")
     print("  Product Name maximum 20 characters, only contain letters allow to use space to separate worlds")
+    time.sleep(3)
     print("--------------------------------------------------------------")
     print("       Product size only from size options provided!")
+    time.sleep(3)
     print("--------------------------------------------------------------")
     print("           Barode 13 digits and only digits.")
 
