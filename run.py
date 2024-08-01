@@ -27,6 +27,16 @@ product_list = df['Product Name'].to_list()
 # list printed to the terminal.
 print(product_list)
 
+sizes_data = SHEET.worksheet('Product size')
+
+#Geting all values in the worksheet as DataFrame
+data_size = sizes_data.get_all_records()
+df = pd.DataFrame(data_size)
+# Creating a list of products sizes from the "Product Size" column.
+product_size_list = df['Product Size'].to_list()
+# list printed to the terminal.
+print(product_size_list)
+
 
 def get_valid_choice(menu_option):
     """
@@ -284,9 +294,9 @@ def main():
 
     
 #main()
-new = add_new_product()
-print(new)
-update_worksheet_new_product(new,"Product List")
+#new = add_new_product()
+#print(new)
+#update_worksheet_new_product(new,"Product List")
 
 #user_input_test = get_valid_choice(5)
 
