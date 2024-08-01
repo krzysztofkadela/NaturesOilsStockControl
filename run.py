@@ -163,6 +163,7 @@ def add_new_product():
     Asking user for updates product list, user can add new products, all information are 
     store in the dictionary and return from function.
     """
+    #Add time.sleep() to delay displaying rules.
     print("      Welcome to the new product addition section.")
     time.sleep(3)
     print("--------------------------------------------------------------")
