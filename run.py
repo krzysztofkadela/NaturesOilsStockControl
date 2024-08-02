@@ -214,18 +214,22 @@ def add_new_product():
         print("Error: Please enter a valid product size.")
         new_product_size = input("Please enter new product size (options: 220ml, 450ml, 860ml, 4.5L, 10L): \n")
 
-    # while loop to check are barcode enetered hev 13 digits.
+    
     while True:
 
-        barcode = input("Please enter a 13-digit barcode: \n")
+        barcode = input("Please enter a 13-digit barcode: \n") # Min 13 digits
 
-        # checking is barcode enetred valid.
+        """"
+        Validate barcode
+        """
         if len(barcode) == 13 and barcode.isdigit():
             break
         else:
             print("Invalid barcode, please enter 13-digit barcode")
 
-    # Creating dictonary with collected data
+    """
+      Dictonary: data for new_product
+    """
 
     new_product_info = {
         "current_date": current_date_new_product,
@@ -243,7 +247,9 @@ def update_worksheet_new_product(new_product,worksheet):
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
 
-    # Creating list of data to be added to worksheet
+    """
+    Creating list of data to be added to worksheet
+    """ 
 
     row = [new_product["current_date"], new_product["product_name"], new_product["product_size"], new_product["barcode"]]
 
@@ -272,7 +278,7 @@ def get_value_by_product_name(product_name, worksheet):
         result = [datetime.now().strftime("%m/%d/%Y"), product_name, qty_sum]
         return result
     else:
-        raise ValueError("Required columns 'Product Name' and 'QTYy' are not in the DataFrame.")   
+        raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")   
 
 
 def main():
