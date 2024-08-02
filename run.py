@@ -195,21 +195,26 @@ def add_new_product():
     current_date_load = datetime.now()
     current_date_new_product = current_date_load.strftime("%Y-%m-%d")
 
-    # New Product fill by user.
-    new_product_name = input("Please enter a new product name: \n")
+    
+    new_product_name = input("Please enter a new product name: \n") # New Product fill by user
 
-    # Validatting  product name inserted by user.
+    """
+    Validatting  product name inserted by user.
+    """
     while len(new_product_name) > 20 or not all(char.isalpha() or char.isspace() for char in new_product_name) : #Max 20 characters and only letters and spaces.
         print("Error: Product name must be at most 20 characters long and contain only letters.")
         new_product_name = input("Please enter a new product name: \n")
 
-    # New Product size from user:
+   
     valid_sizes = ['220ml', '450ml', '860ml', '4.5L', '10L']  #list of evelible products sizes.
     
     print(f"Available sizes:{valid_sizes} ")
+
     new_product_size = input("Please enter new product size: \n")
 
-    # Validate product size
+    """
+    Vallidating new product size
+    """
     while new_product_size not in valid_sizes:
         print("Error: Please enter a valid product size.")
         new_product_size = input("Please enter new product size (options: 220ml, 450ml, 860ml, 4.5L, 10L): \n")
