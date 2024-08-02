@@ -269,7 +269,7 @@ def get_value_by_product_name(product_name, worksheet):
         filtered_df = df[df['Product Name'] == 'Taco Sauce']
         qty_sum = int(filtered_df['QTY'].sum())
 
-        result = [datetime.now().strftime("%m/%d/%Y"), 'Taco Sauce', qty_sum]
+        result = [datetime.now().strftime("%m/%d/%Y"), product_name, qty_sum]
         return result
     else:
         raise ValueError("Required columns 'Product Name' and 'QTYy' are not in the DataFrame.")   
@@ -328,7 +328,7 @@ def main():
 #print(user_input_test)
 
 try:
-    taco_saue_stock = get_value_by_product_name('Taco Sauce', 'Product Good In')
+    taco_saue_stock = get_value_by_product_name('Chipotle Sauce', 'Product Good In')
     print(taco_saue_stock)
 except Exception as e:
     print(f"An error occurred: {e}")
