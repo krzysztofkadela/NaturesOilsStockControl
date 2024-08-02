@@ -65,9 +65,10 @@ def main_menu():
     Displays "Main Menu" for user, ask to make a choice, check the choice and if is valid,
     returns value.
     """
-    #Printing options for user.
     print("Welcome in Natures Oils Stock System")
+    print("------------------------------------")
     print("Please select one of the options:")
+    print("------------------------------------")
     print("1 - Update stock")
     print("2 - Updated product list")
     print("3 - Production Report's")
@@ -87,38 +88,42 @@ def update_stock_menu():
     print("3 - Stock Correction.")
     print("4 - Stock Take")
     print("5 - Return to main menu.")
-    #function to check valid user choice, asigning value to varible user_choice_stock_menu
-    user_choice_stock_menu = get_valid_choice(5)
-    #return valid user choice
-    return user_choice_stock_menu
+
+    user_choice_stock_menu = get_valid_choice(5) #check valid input
+    
+    return user_choice_stock_menu #return valid user choice
 
 
 def upddate_stock(choice, product_list):
     """
     Updating stock, all option goods in goods out and corrections. 
     """
-    #Getting current date.
-    current_date = datetime.now()
-
-    #Converted to format "YYYY-MM-DD".
-    converted_date = current_date.strftime("%Y-%m-%d")
+    
+    current_date = datetime.now() # Getting current date.
+    
+    converted_date = current_date.strftime("%Y-%m-%d") # Converted to format "YYYY-MM-DD"
 
     if choice == "goods_in":#For Goods In option 
         
         data_in = []
-        # Asking user for correct input
-        print("Please enter a numeric value for all products quantity.")
+        
+        print("Please enter a numeric value for all products quantity.") # Asking user for correct input
+        """"
+        Getting values from product_list varible , products imported from worksheet.
+        """
 
-        for product in product_list:#Getting values from product_list varible , products imported from worksheet.
+        for product in product_list:
             
             while True:
-                  # Getting values for each product from user.
+                  """
+                  Getting values for each product from user
+                  """
                   value = input(f"How many of {product} you wants to add to the stock?: \n")
                   try:
-                     # Attempt to convert the input to a intager.
-                     numeric_value = int(value)
-                     # If the conversion is successful, break the loop
-                     data_in.append((converted_date, product, numeric_value))
+                     
+                     numeric_value = int(value) # Attempt to convert the input to a intager.
+                     
+                     data_in.append((converted_date, product, numeric_value)) # If the conversion is successful, break the loop
                      break
                   except ValueError:
                      # If conversion fails, print an error message
@@ -139,13 +144,10 @@ def upddate_stock(choice, product_list):
                   try:
                      # Attempt to convert the input to a intager.
                      numeric_value = int(value)
-                     # If the conversion is successful, break the loop
-                     data_out.append((converted_date, product, numeric_value))
+                     data_out.append((converted_date, product, numeric_value))# If the conversion is successful, break the loop
                      break
                   except ValueError:
-                     # If conversion fails, print an error message
-                     print("Wrong value. Please enter a valid number.")
-        #return tuple(data_out)
+                     print("Wrong value. Please enter a valid number.") # If conversion fails, print an error message
         return data_out
 
 
@@ -156,27 +158,24 @@ def update_worksheet(data, worksheet):
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     for record in data:
-        # Ensure the record is a flat list with string representation for writing
         record_as_list = [str(value) if not isinstance(value, (int, float)) else value for value in record]
         
-        # Print for debugging purposes
-        print(f"Appending record: {record_as_list}\n")  # Check the data format(added \n Statment!!!!!!!!!!!)
+        print(f"Appending record: {record_as_list}\n")  # Check the data format(added \n Statment!)
 
         try:
             worksheet_to_update.append_row(record_as_list)
             print(f"Successfully appended record: {record_as_list}")  # Confirmation of success
         except Exception as e:
             print(f"Failed to append record {record_as_list} due to error: {e}")
-    #for record in data:
-          #worksheet_to_update.append_row(data)
-    #print(f"{worksheet} worksheet updated successfully\n")
-    
+      
 def add_new_product():
     """
     Asking user for updates product list, user can add new products, all information are 
     store in the dictionary and return from function.
     """
-    #Add time.sleep() to delay displaying rules.
+    """
+    Add time.sleep() to delay displaying rules
+    """
     print("      Welcome to the new product addition section.")
     time.sleep(3)
     print("--------------------------------------------------------------")
