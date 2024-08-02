@@ -17,9 +17,12 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('NO_Stock')
 
-products = SHEET.worksheet('Product List')
+"""
+Geting all values in the worksheet as DataFrame
+"""
 
-#Geting all values in the worksheet as DataFrame
+products = SHEET.worksheet('Product List') # product list.
+
 data = products.get_all_records()
 df = pd.DataFrame(data)
 # Creating a list of products from the "Product Name" column.
@@ -248,6 +251,28 @@ def update_worksheet_new_product(new_product,worksheet):
 
     print("Product list have be updated!")
 
+def get_value_by_product_name(product_name, worksheet):
+    """
+    By taking the product name and worksheet name,
+     it calculates and returns a list includs: 
+    'current date',
+    'Product Name',
+     'QTY'
+    """
+    goods_in_data = SHEET.worksheet(worksheet) # depend on workssheet.
+
+    records = goods_in_data.get_all_records()
+     
+    df = pd.DataFrame(records)
+
+    if 'Product Name' in df.columns and 'QTY' in df.columns:
+        filtered_df = df[df['Product Name'] == 'Taco Sauce']
+        qty_sum = int(filtered_df['QTY'].sum())
+
+        result = [datetime.now().strftime("%m/%d/%Y"), 'Taco Sauce', qty_sum]
+        return result
+    else:
+        raise ValueError("Required columns 'Product Name' and 'QTYy' are not in the DataFrame.")   
 
 
 def main():
@@ -301,3 +326,10 @@ def main():
 #user_input_test = get_valid_choice(5)
 
 #print(user_input_test)
+
+try:
+    taco_saue_stock = get_value_by_product_name('Taco Sauce', 'Product Good In')
+    print(taco_saue_stock)
+except Exception as e:
+    print(f"An error occurred: {e}")
+
