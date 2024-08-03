@@ -71,7 +71,7 @@ def main_menu():
     print("------------------------------------")
     print("1 - Update stock")
     print("2 - Updated product list")
-    print("3 - Production Report's")
+    print("3 - Stock Report's")
     print("4 - Finsh")
     user_choice_main_menu = input("Whats you want to do? \n") 
     return user_choice_main_menu
@@ -92,6 +92,8 @@ def update_stock_menu():
     user_choice_stock_menu = get_valid_choice(5) #check valid input
     
     return user_choice_stock_menu #return valid user choice
+
+
 
 
 def upddate_stock(choice, product_list):
@@ -126,23 +128,24 @@ def upddate_stock(choice, product_list):
                      data_in.append((converted_date, product, numeric_value)) # If the conversion is successful, break the loop
                      break
                   except ValueError:
-                     # If conversion fails, print an error message
-                     print("Wrong value. Please enter a valid number.")
+                     
+                     print("Wrong value. Please enter a valid number.") # If error 
 
-        #return tuple(data_in) #convert list to tuple before return.
         return data_in
     elif choice == "goods_out":
         data_out = []
-        # asking user for correct input
-        print("Please enter a numeric value for all products quantity.")
+        print("Please enter a numeric value for all products quantity.") # Asking user for correct value
 
         for product in product_list:
             
             while True:
-                  # asking user for correct input
+                  """
+                  Use try: to check correct value inputed by user
+
+                  """
                   value = input(f"How many of {product} was send out to customers?: \n")
                   try:
-                     # Attempt to convert the input to a intager.
+                     
                      numeric_value = int(value)
                      data_out.append((converted_date, product, numeric_value))# If the conversion is successful, break the loop
                      break
@@ -190,7 +193,9 @@ def add_new_product():
     print("--------------------------------------------------------------")
     print("           Barode 13 digits and only digits.")
 
-    # Collecting current date and formating to neede format YYYY-MM-DD.
+    """
+    Collecting current date and formating to neede format YYYY-MM-DD
+    """ 
     current_date_load = datetime.now()
     current_date_new_product = current_date_load.strftime("%Y-%m-%d")
 
@@ -234,7 +239,6 @@ def add_new_product():
     """
       Dictonary: data for new_product
     """
-
     new_product_info = {
         "current_date": current_date_new_product,
         "product_name": new_product_name,
@@ -295,16 +299,13 @@ def main():
          print("You chose Choice 1.")
          while True:
              choice_I = update_stock_menu()
-             if choice_I == '1':
-                #choice 1 updtate product goods in
+             if choice_I == '1': #choice 1 updtate product goods in
                 data_in = upddate_stock("goods_in", product_list)
                 print(data_in)
                 update_worksheet(data_in, "Product Good In")
-             elif choice_I == '2':
-                #choice 2 update product goods out
+             elif choice_I == '2': #choice 2 update product goods out
                 data_out = upddate_stock("goods_out", product_list)
                 update_worksheet(data_out, "Product Good Out")
-                #print(f"You data is: {data_out}")
              elif choice_I == '3':
                  print("You chose Choice 3.")
              elif choice_I == '4':
