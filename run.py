@@ -65,7 +65,7 @@ def main_menu():
     Displays "Main Menu" for user, ask to make a choice, check the choice and if is valid,
     returns value.
     """
-    print("Welcome in Natures Oils Stock System")
+    print("------------Welcome in Natures Oils Stock System---------------")
     print("------------------------------------")
     print("Please select one of the options:")
     print("------------------------------------")
