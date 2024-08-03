@@ -21,7 +21,7 @@ SHEET = GSPREAD_CLIENT.open('NO_Stock')
 Geting all values in the worksheet as DataFrame
 """
 
-products = SHEET.worksheet('Product List') # product list.
+products = SHEET.worksheet('Product List')  # product list.
 
 data = products.get_all_records()
 df = pd.DataFrame(data)
@@ -31,12 +31,13 @@ product_list = df['Product Name'].to_list()
 
 sizes_data = SHEET.worksheet('Product size')
 
-#Geting all values in the worksheet as DataFrame
+"""
+Geting all values in the worksheet as DataFrame
+"""
 data_size = sizes_data.get_all_records()
 df = pd.DataFrame(data_size)
 # Creating a list of products sizes from the "Product Size" column.
 product_size_list = df['Product Size'].to_list()
-
 
 
 def get_valid_choice(menu_option):
@@ -48,8 +49,10 @@ def get_valid_choice(menu_option):
         user_input = input("Please enter an integer between 1 and 5: \n")
 
         try:
-            user_input = int(user_input)  # Try to convert the input to an integer
-            if 1 <= user_input <= menu_option:  # Check if the value is between 1 and 5
+            # Try to convert the input to an integer
+            user_input = int(user_input)
+            # Check if the value is between 1 and 5
+            if 1 <= user_input <= menu_option:
                 return user_input  # Return the valid input
             else:
                 print("Invalid input. Please enter a number between 1 and 5.")
@@ -57,10 +60,10 @@ def get_valid_choice(menu_option):
             print("Invalid input. Please enter a valid integer.")
 
 
-
 def main_menu():
     """
-    Displays "Main Menu" for user, ask to make a choice, check the choice and if is valid,
+    Displays "Main Menu" for user, ask to make a choice,
+    check the choice and if is valid,
     returns value.
     """
     print("-----      Welcome in Natures Oils Stock System     --------")
@@ -74,6 +77,7 @@ def main_menu():
     user_choice_main_menu = get_valid_choice(4)
     return int(user_choice_main_menu)
 
+
 def update_stock_menu():
     """
     Displeys "Update stock Menu" for all goods in and orders out.
@@ -84,33 +88,32 @@ def update_stock_menu():
     print("   2 - Goods Out.")
     print("   3 - Return to main menu.")
 
-    user_choice_stock_menu = get_valid_choice(3) #check valid input
-    
-    return int(user_choice_stock_menu) #return valid user choiceonverted to integer
+    user_choice_stock_menu = get_valid_choice(3)  # check valid input
 
-
+    return int(user_choice_stock_menu)  # user choice onverted to integer
 
 
 def upddate_stock(choice, product_list):
     """
-    Updating stock, all option goods in goods out and corrections. 
+    Updating stock, all option goods in goods out and corrections.
     """
-    
-    current_date = datetime.now() # Getting current date.
-    
-    converted_date = current_date.strftime("%Y-%m-%d") # Converted to format "YYYY-MM-DD"
 
-    if choice == "goods_in":#For Goods In option 
-        
+    current_date = datetime.now()  # Getting current date
+
+    converted_date = current_date.strftime("%Y-%m-%d")
+
+    if choice == "goods_in":  # For Goods In option
+
         data_in = []
-        
-        print("Please enter a numeric value for all products quantity.") # Asking user for correct input
+    
+        print("Please enter a numeric value for all products quantity.")
         """"
-        Getting values from product_list varible , products imported from worksheet.
+        Getting values from product_list varible ,
+        products imported from worksheet.
         """
 
         for product in product_list:
-            
+
             while True:
                   """
                   Getting values for each product from user
@@ -320,13 +323,7 @@ def main():
 
     
 main()
-#new = add_new_product()
-#print(new)
-#update_worksheet_new_product(new,"Product List")
 
-#user_input_test = get_valid_choice(5)
-
-#print(user_input_test)
 """
 try:
     taco_saue_stock = get_value_by_product_name('Chipotle Sauce', 'Product Good In')
