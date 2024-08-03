@@ -71,10 +71,10 @@ def main_menu():
     print("------------------------------------")
     print("1 - Update stock")
     print("2 - Updated product list")
-    print("3 - Stock Report's")
+    print("3 - Stock Report")
     print("4 - Finsh")
-    user_choice_main_menu = input("Whats you want to do? \n") 
-    return user_choice_main_menu
+    user_choice_main_menu = get_valid_choice(4)
+    return int(user_choice_main_menu)
 
 def update_stock_menu():
     """
@@ -91,7 +91,7 @@ def update_stock_menu():
 
     user_choice_stock_menu = get_valid_choice(5) #check valid input
     
-    return user_choice_stock_menu #return valid user choice
+    return int(user_choice_stock_menu) #return valid user choiceonverted to integer
 
 
 
@@ -294,33 +294,33 @@ def main():
     Main function run the program
     """
     while True:
-      choice = main_menu()
-      if choice == '1':
+      user_choice = main_menu()
+      if user_choice == 1:
          print("You chose Choice 1.")
          while True:
              choice_I = update_stock_menu()
-             if choice_I == '1': #choice 1 updtate product goods in
+             if choice_I == 1 : #choice 1 updtate product goods in
                 data_in = upddate_stock("goods_in", product_list)
-                print(data_in)
                 update_worksheet(data_in, "Product Good In")
-             elif choice_I == '2': #choice 2 update product goods out
+             elif choice_I == 2 : #choice 2 update product goods out
                 data_out = upddate_stock("goods_out", product_list)
                 update_worksheet(data_out, "Product Good Out")
-             elif choice_I == '3':
+             elif choice_I == 3:
+                 new_product_data = add_new_product()
+                 update_worksheet_new_product(new_product_data,'Product List')
+             elif choice_I == 4:
                  print("You chose Choice 3.")
-             elif choice_I == '4':
-                 print("You chose Choice 3.")
-             elif choice_I == '5':
+             elif choice_I == 5:
                    print("Exiting the menu. Goodbye!")
                    break  # Exit the loop
              else:
                  print("Invalid choice. Please select a number between 1 and 4.")
                  print("Please select on number from 1 to 4 and pres enter! ")
-      elif choice == '2':
+      elif user_choice == 2:
          print("You chose Choice 2.")
-      elif choice == '3':
+      elif user_choice == 3:
          print("You chose Choice 3.")
-      elif choice == '4':
+      elif user_choice == 4:
         print("Exiting the menu. Goodbye!")
         break  # Exit the loop
       else:
@@ -329,7 +329,7 @@ def main():
 
 
     
-#main()
+main()
 #new = add_new_product()
 #print(new)
 #update_worksheet_new_product(new,"Product List")
@@ -337,10 +337,11 @@ def main():
 #user_input_test = get_valid_choice(5)
 
 #print(user_input_test)
-
+"""
 try:
     taco_saue_stock = get_value_by_product_name('Chipotle Sauce', 'Product Good In')
     print(taco_saue_stock)
 except Exception as e:
     print(f"An error occurred: {e}")
 
+"""
