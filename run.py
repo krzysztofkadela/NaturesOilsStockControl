@@ -66,9 +66,9 @@ def main_menu():
     returns value.
     """
     print("------------Welcome in Natures Oils Stock System---------------")
-    print("------------------------------------")
-    print("Please select one of the options:")
-    print("------------------------------------")
+    print("            ------------------------------------               ")
+    print("             Please select one of the options:                 ")
+    print("            ------------------------------------               ")
     print("1 - Update stock")
     print("2 - Updated product list")
     print("3 - Stock Report")
