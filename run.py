@@ -27,8 +27,7 @@ data = products.get_all_records()
 df = pd.DataFrame(data)
 # Creating a list of products from the "Product Name" column.
 product_list = df['Product Name'].to_list()
-# list printed to the terminal.
-print(product_list)
+
 
 sizes_data = SHEET.worksheet('Product size')
 
@@ -37,8 +36,7 @@ data_size = sizes_data.get_all_records()
 df = pd.DataFrame(data_size)
 # Creating a list of products sizes from the "Product Size" column.
 product_size_list = df['Product Size'].to_list()
-# list printed to the terminal.
-print(product_size_list)
+
 
 
 def get_valid_choice(menu_option):
@@ -65,14 +63,14 @@ def main_menu():
     Displays "Main Menu" for user, ask to make a choice, check the choice and if is valid,
     returns value.
     """
-    print("------------Welcome in Natures Oils Stock System---------------")
-    print("            ------------------------------------               ")
-    print("             Please select one of the options:                 ")
-    print("            ------------------------------------               ")
-    print("1 - Update stock")
-    print("2 - Updated product list")
-    print("3 - Stock Report")
-    print("4 - Finsh")
+    print("-----      Welcome in Natures Oils Stock System     --------")
+    print("           ------------------------------------             ")
+    print("            Please select one of the options:               ")
+    print("            ------------------------------------            ")
+    print("    1 - Update stock")
+    print("    2 - Updated product list")
+    print("    3 - Stock Report")
+    print("    4 - Finsh")
     user_choice_main_menu = get_valid_choice(4)
     return int(user_choice_main_menu)
 
@@ -80,16 +78,13 @@ def update_stock_menu():
     """
     Displeys "Update stock Menu" for all goods in and orders out.
     """
-    print("U are to try update stock")
-    print("You have choice 'Update stock' option:")
-    print("What you wants to update?:")
-    print("1 - Goods In.")
-    print("2 - Goods Out.")
-    print("3 - Stock Correction.")
-    print("4 - Stock Take")
-    print("5 - Return to main menu.")
+    print("   You have choice 'Update stock' option:")
+    print("   What you wants to update?: \n")
+    print("   1 - Goods In.")
+    print("   2 - Goods Out.")
+    print("   3 - Return to main menu.")
 
-    user_choice_stock_menu = get_valid_choice(5) #check valid input
+    user_choice_stock_menu = get_valid_choice(3) #check valid input
     
     return int(user_choice_stock_menu) #return valid user choiceonverted to integer
 
@@ -306,18 +301,13 @@ def main():
                 data_out = upddate_stock("goods_out", product_list)
                 update_worksheet(data_out, "Product Good Out")
              elif choice_I == 3:
-                 new_product_data = add_new_product()
-                 update_worksheet_new_product(new_product_data,'Product List')
-             elif choice_I == 4:
-                 print("You chose Choice 3.")
-             elif choice_I == 5:
                    print("Exiting the menu. Goodbye!")
                    break  # Exit the loop
              else:
-                 print("Invalid choice. Please select a number between 1 and 4.")
-                 print("Please select on number from 1 to 4 and pres enter! ")
+                 print("Invalid choice. Please select a number between 1 and 3.")
       elif user_choice == 2:
-         print("You chose Choice 2.")
+                new_product_data = add_new_product()
+                update_worksheet_new_product(new_product_data,'Product List')
       elif user_choice == 3:
          print("You chose Choice 3.")
       elif user_choice == 4:
