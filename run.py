@@ -90,7 +90,21 @@ def update_stock_menu():
 
     user_choice_stock_menu = get_valid_choice(3)  # check valid input
 
-    return int(user_choice_stock_menu)  # user choice onverted to integer
+    return int(user_choice_stock_menu)  # user choice converted to integer
+
+def report_meu():
+    """
+    Displeys "Report Menu" options
+    """
+    print(" Please choice one of the option")
+    print(" ------------------------------")
+    print("1 - Full Stock")
+    print("2 - Stock by product")
+    print("3 - Producttion by day")
+    print("4 - Sale by day")
+    user_choice_stock_menu = get_valid_choice(4)  # check valid input
+
+    return int(user_choice_stock_menu)  # user choice converted to integer
 
 
 def upddate_stock(choice, product_list):
@@ -105,7 +119,7 @@ def upddate_stock(choice, product_list):
     if choice == "goods_in":  # For Goods In option
 
         data_in = []
-    
+
         print("Please enter a numeric value for all products quantity.")
         """"
         Getting values from product_list varible ,
@@ -115,17 +129,17 @@ def upddate_stock(choice, product_list):
         for product in product_list:
 
             while True:
-                  """
-                  Getting values for each product from user
-                  """
-                  value = input(f"How many of {product} you wants to add to the stock?: \n")
-                  try:
-                     
+                """
+                Getting values for each product from user
+                """
+                value = input(f"How many of {product} you wants to add to the stock?: \n")
+
+                try:
                      numeric_value = int(value) # Attempt to convert the input to a intager.
                      
                      data_in.append((converted_date, product, numeric_value)) # If the conversion is successful, break the loop
                      break
-                  except ValueError:
+                except ValueError:
                      
                      print("Wrong value. Please enter a valid number.") # If error 
 
