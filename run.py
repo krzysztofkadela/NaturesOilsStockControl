@@ -305,7 +305,8 @@ def full_stock_report():
     """
     Counting actual stock and displays product by product
     """
-    
+    for products in product_list:
+        get_value_by_product_name(product_name, worksheet)
 
 
 
@@ -345,7 +346,7 @@ def main():
 
 
     
-main()
+#main()
 
 """
 try:
@@ -355,3 +356,49 @@ except Exception as e:
     print(f"An error occurred: {e}")
 
 """
+def get_value_by_product_name_test(product_name, worksheet):
+    """
+    By taking the product name and worksheet name,
+     it calculates and returns a list including: 
+    'current date',
+    'Product Name',
+     'QTY'
+    """
+    goods_in_data = SHEET.worksheet(worksheet)  # depend on worksheet.
+
+    records = goods_in_data.get_all_records()
+
+    df = pd.DataFrame(records)
+
+    if 'Product Name' in df.columns and 'QTY' in df.columns:
+        filtered_df = df[df['Product Name'] == product_name]
+        qty_sum = int(filtered_df['QTY'].sum())
+
+        result = [datetime.now().strftime("%m/%d/%Y"), product_name, qty_sum]
+        return result
+    else:
+        raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")
+
+def get_all_product_values(product_list, worksheet):
+    """
+    Takes a list of products and a worksheet name,
+    and returns a list of product details including
+    current date, product name, and quantity for each product.
+    """
+    results = []
+    for product_name in product_list:
+        product_info = get_value_by_product_name_test(product_name, worksheet)
+        results.append(product_info)
+        print(f"{product_info[1]} - {product_info[2]}")
+
+    return results
+
+
+# Assuming 'Sheet1' is the name of the worksheet you want to query
+#results = get_all_product_values(product_list, 'Product Good In')
+#for item in results:
+ #   print(item)
+value = get_all_product_values(product_list, "Product Good In")
+value_out = get_all_product_values(product_list, "Product Good Out")
+print(value)
+print(value_out)
