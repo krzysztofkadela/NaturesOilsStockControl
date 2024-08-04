@@ -301,6 +301,15 @@ def get_value_by_product_name(product_name, worksheet):
         raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")   
 
 
+def full_stock_report():
+    """
+    Counting actual stock and displays product by product
+    """
+    
+
+
+
+
 def main():
     """
     Main function run the program
