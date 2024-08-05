@@ -378,7 +378,7 @@ def get_value_by(product_name, worksheet):
         return qty_sum
     else:
         raise ValueError("Required columns 'Product Name'and 'QTY'.")
-                   
+
 
 def calculate_stock(product_list):
     """
