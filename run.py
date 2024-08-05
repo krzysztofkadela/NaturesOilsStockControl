@@ -46,7 +46,7 @@ def get_valid_choice(menu_option):
     Returns the valid choice if input is valid, otherwise None.
     """
     while True:  # Loop until valid input is received
-        user_input = input(f"Please enter an integer between 1 and {menu_option}: \n")
+        user_input = input(f"Enter an number between 1 and {menu_option}: \n")
 
         try:
             # Try to convert the input to an integer
@@ -55,7 +55,7 @@ def get_valid_choice(menu_option):
             if 1 <= user_input <= menu_option:
                 return user_input  # Return the valid input
             else:
-                print(f"Invalid input. Please enter a number between 1 and {menu_option}.")
+                print(f"Invalid input. Use number between 1 and {menu_option}.")
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
 
@@ -129,64 +129,73 @@ def upddate_stock(choice, product_list):
 
         for product in product_list:
             while True:
-               """
-               Getting values for each product from user
-               """
-            value = input(f"Many of {product} you wants to add to the stock?: \n")
+                """
+                Getting values for each product from user
+                """
+            value = input(f"Many of {product} you wants to add ?: \n")
 
             try:
-                numeric_value = int(value) # Attempt to convert the input to a intager.
-                     
-                data_in.append((converted_date, product, numeric_value)) # If the conversion is successful, break the loop
+                """
+                Attempt to convert the input to a intager.
+                If the conversion is successful, break the loop.
+                """
+                numeric_value = int(value)
+
+                data_in.append((converted_date, product, numeric_value))
                 break
             except ValueError:
-                     
-                 print("Wrong value. Please enter a valid number.") # If error 
+                print("Wrong value. Please enter a valid number.")  # If error
 
         return data_in
 
     elif choice == "goods_out":
         data_out = []
-        print("Please enter a numeric value for all products quantity.") # Asking user for correct value
+        print("Please enter a numeric value for all products quantity.")
 
         for product in product_list:
-            
-            while True:
-                  """
-                  Use try: to check correct value inputed by user
 
-                  """
-                  value = input(f"How many of {product} was send out to customers?: \n")
-                  try:
-                     
-                     numeric_value = int(value)
-                     data_out.append((converted_date, product, numeric_value))# If the conversion is successful, break the loop
-                     break
-                  except ValueError:
-                     print("Wrong value. Please enter a valid number.") # If conversion fails, print an error message
+            while True:
+                """
+                Use try: to check correct value inputed by user
+                If the conversion is successful, break the loop
+                If conversion fails, print an error message
+                """
+                value = input(f"How many of {product} was send out?: \n")
+                try:
+
+                    numeric_value = int(value)
+                    data_out.append((converted_date, product, numeric_value))
+                    break
+                except ValueError:
+                    print("Wrong value. Please enter a valid number.")
         return data_out
 
 
 def update_worksheet(data, worksheet):
     """
     By geting data and worksheet updates appropriate spreadsheet.
+    Printing each line to the console.
+
     """
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
     for record in data:
-        record_as_list = [str(value) if not isinstance(value, (int, float)) else value for value in record]
-        
-        print(f"Appending record: {record_as_list}\n")  # Check the data format(added \n Statment!)
+        record_as_list = [str(value) if not isinstance(value, (int, float))
+                          else value for value in record]
+
+        print(f"Appending record: {record_as_list}\n")
 
         try:
             worksheet_to_update.append_row(record_as_list)
-            print(f"Successfully appended record: {record_as_list}")  # Confirmation of success
+            print(f"Successfully appended record: {record_as_list}")
         except Exception as e:
-            print(f"Failed to append record {record_as_list} due to error: {e}")
+            print(f"Failed to append record "
+                  "{record_as_list} due to error: {e}")
       
 def add_new_product():
     """
-    Asking user for updates product list, user can add new products, all information are 
+    Asking user for updates product list,
+    user can add new products, all information are
     store in the dictionary and return from function.
     """
     """
@@ -198,7 +207,8 @@ def add_new_product():
     print("Please provide information according to the requirements below")
     time.sleep(3)
     print("--------------------------------------------------------------")
-    print("  Product Name maximum 20 characters, only contain letters allow to use space to separate worlds")
+    print("Product Name maximum 20 characters, ")
+    print("only contain letters allow to use space to separate worlds")
     time.sleep(3)
     print("--------------------------------------------------------------")
     print("       Product size only from size options provided!")
@@ -208,23 +218,27 @@ def add_new_product():
 
     """
     Collecting current date and formating to required format YYYY-MM-DD
-    """ 
+    """
     current_date_load = datetime.now()
     current_date_new_product = current_date_load.strftime("%Y-%m-%d")
 
-    
-    new_product_name = input("Please enter a new product name: \n") # New Product fill by user
+    new_product_name = input("Please enter a new product name: \n")
 
     """
     Validatting  product name inserted by user.
+    Checking list of evelible products sizes.
+
     """
-    while len(new_product_name) > 20 or not all(char.isalpha() or char.isspace() for char in new_product_name) : #Max 20 characters and only letters and spaces.
-        print("Error: Product name must be at most 20 characters long and contain only letters.")
+    while (len(new_product_name) > 20 or
+            not all(char.isalpha() or char.isspace()
+                    for char in new_product_name)):
+        print("Error: Product name must be at most 20 characters long "
+              "and contain only letters.")
+
         new_product_name = input("Please enter a new product name: \n")
 
-   
-    valid_sizes = ['220ml', '450ml', '860ml', '4.5L', '10L']  #list of evelible products sizes.
-    
+    valid_sizes = ['220ml', '450ml', '860ml', '4.5L', '10L']
+
     print(f"Available sizes:{valid_sizes} ")
 
     new_product_size = input("Please enter new product size: \n")
@@ -234,12 +248,12 @@ def add_new_product():
     """
     while new_product_size not in valid_sizes:
         print("Error: Please enter a valid product size.")
-        new_product_size = input("Please enter new product size (options: 220ml, 450ml, 860ml, 4.5L, 10L): \n")
-
-    
+        new_product_size = input("Please enter new product size options:"
+                                 " ( 220ml, 450ml, 860ml, 4.5L, 10L): \n"
+                                 )
     while True:
 
-        barcode = input("Please enter a 13-digit barcode: \n") # Min 13 digits
+        barcode = input("Please enter a 13-digit barcode: \n")  # Min 13 digits
 
         """"
         Validate barcode
@@ -259,7 +273,7 @@ def add_new_product():
         "barcode": barcode
     }
 
-    return new_product_info      
+    return new_product_info
 
 def update_worksheet_new_product(new_product, worksheet):
     """
@@ -301,7 +315,8 @@ def get_value_by_product_name(product_name, worksheet):
         result = [datetime.now().strftime("%m/%d/%Y"), product_name, qty_sum]
         return result
     else:
-        raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")   
+        raise ValueError("Required columns 'Product Name' "
+                         "and 'QTY' are not in the DataFrame.")  
 
 
 def get_value_by_product_name_test(product_name, worksheet):
@@ -325,7 +340,8 @@ def get_value_by_product_name_test(product_name, worksheet):
         result = [datetime.now().strftime("%m/%d/%Y"), product_name, qty_sum]
         return result
     else:
-        raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")
+        raise ValueError("Required columns 'Product Name'"
+                         " and 'QTY' are not in the DataFrame.")
 
 
 def get_all_product_values(product_list, worksheet):
