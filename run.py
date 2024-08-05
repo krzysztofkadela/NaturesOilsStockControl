@@ -423,26 +423,4 @@ def main():
 
 
     
-#main()
-
-def get_valid_choice_test(menu_option):
-    """
-    Prompts the user to enter a choice between 1 and 5.
-    Returns the valid choice if input is valid, otherwise None.
-    """
-    while True:  # Loop until valid input is received
-        user_input = input(f"Please enter an integer between 1 and {menu_option}: \n")
-
-        try:
-            # Try to convert the input to an integer
-            user_input = int(user_input)
-            # Check if the value is between 1 and 5
-            if 1 <= user_input <= menu_option:
-                return user_input  # Return the valid input
-            else:
-                print(f"Invalid input. Please enter a number between 1 and {menu_option}.")
-        except ValueError:
-            print("Invalid input. Please enter a valid integer.")
-
-
-test = get_valid_choice_test(2)
+main()
