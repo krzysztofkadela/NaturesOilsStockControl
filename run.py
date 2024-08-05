@@ -382,44 +382,44 @@ def main():
     Main function run the program
     """
     while True:
-      user_choice = main_menu()
-      if user_choice == 1:
-         while True:
-             choice_I = update_stock_menu()
-             if choice_I == 1 : #choice 1 updtate product goods in
-                data_in = upddate_stock("goods_in", product_list)
-                update_worksheet(data_in, "Product Good In")
-             elif choice_I == 2 : #choice 2 update product goods out
-                data_out = upddate_stock("goods_out", product_list)
-                update_worksheet(data_out, "Product Good Out")
-             elif choice_I == 3:
-                   print("Exiting the menu. Goodbye!")
-                   break  # Exit the loop
-             else:
-                 print("Invalid choice. Please select a number between 1 and 3.")
-      elif user_choice == 2:
-                new_product_data = add_new_product()
-                update_worksheet_new_product(new_product_data,'Product List')
-      elif user_choice == 3:
-        while True:
-             choice_II = report_meu()
-             if choice_II == 1 : # choice 1 display stock by product
-                calculate_stock(product_list) # Function display stock
-             elif choice_II == 2 : # choice 2 display production for all products
-                get_all_product_values(product_list, "Product Good In")
-             elif choice_II == 3 :# choice 3 display sale values.
-                get_all_product_values(product_list, "Product Good Out")   
-             elif choice_II == 4:
-                   print("Exiting the menu. Goodbye!")
-                   break  # Exit the loop
-             else:
-                 print("Invalid choice. Please select a number between 1 and 3.")
-      elif user_choice == 4:
-        print("Exiting the menu. Goodbye!")
-        break  # Exit the loop
-      else:
-         print("Invalid choice. Please select a number between 1 and 4.\n")
-         print("Please select one number from 1 to 4 and pres enter! ")
+        user_choice = main_menu()
+        if user_choice == 1:
+            while True:
+                choice_I = update_stock_menu()
+                if choice_I == 1:  # choice 1 updtate product goods in
+                    data_in = upddate_stock("goods_in", product_list)
+                    update_worksheet(data_in, "Product Good In")
+                elif choice_I == 2:  # choice 2 update product goods out
+                    data_out = upddate_stock("goods_out", product_list)
+                    update_worksheet(data_out, "Product Good Out")
+                elif choice_I == 3:
+                    print("Exiting the menu. Goodbye!")
+                    break  # Exit the loop
+                else:
+                    print("Invalid choice. Select a number between 1 and 3.")
+        elif user_choice == 2:
+            new_product_data = add_new_product()
+            update_worksheet_new_product(new_product_data, 'Product List')
+        elif user_choice == 3:
+            while True:
+                choice_II = report_meu()
+                if choice_II == 1:  # choice 1 display stock by product
+                    calculate_stock(product_list)  # Function display stock
+                elif choice_II == 2:  # display production for all products
+                    get_all_product_values(product_list, "Product Good In")
+                elif choice_II == 3:  # choice 3 display sale values.
+                    get_all_product_values(product_list, "Product Good Out")
+                elif choice_II == 4:
+                    print("Exiting the menu. Goodbye!")
+                    break  # Exit the loop
+                else:
+                    print("Invalid choice. Select a number between 1 and 3.")
+        elif user_choice == 4:
+            print("Exiting the menu. Goodbye!")
+            break  # Exit the loop
+        else:
+            print("Invalid choice. Please select a number between 1 and 4.\n")
+            print("Please select one number from 1 to 4 and pres enter! ")
 
 
     
