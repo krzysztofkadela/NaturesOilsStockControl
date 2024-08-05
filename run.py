@@ -103,7 +103,7 @@ def report_meu():
     print("2 - Total Production")
     print("3 - Total Sale")
     print("4 - Return")
-    user_choice_stock_menu = get_valid_choice(3)  # check valid input
+    user_choice_stock_menu = get_valid_choice(4)  # check valid input
 
     return int(user_choice_stock_menu)  # user choice converted to integer
 
@@ -261,9 +261,10 @@ def add_new_product():
 
     return new_product_info      
 
-def update_worksheet_new_product(new_product,worksheet):
+def update_worksheet_new_product(new_product, worksheet):
     """
-    Taking paramiter with new product info and updating 'Product list' worksheet.
+    Taking paramiter with new product info
+    and updating 'Product list' worksheet.
     """
     print(f"Updating {worksheet} worksheet...\n")
     worksheet_to_update = SHEET.worksheet(worksheet)
@@ -272,8 +273,8 @@ def update_worksheet_new_product(new_product,worksheet):
     Creating list of data to be added to worksheet
     """ 
 
-    row = [new_product["current_date"], new_product["product_name"], new_product["product_size"], new_product["barcode"]]
-        
+    row = [new_product["current_date"], new_product["product_name"],
+           new_product["product_size"], new_product["barcode"]]
 
     worksheet_to_update.append_row(row)
 
@@ -356,7 +357,8 @@ def get_value_by(product_name, worksheet):
         qty_sum = int(filtered_df['QTY'].sum())
         return qty_sum
     else:
-        raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")
+        raise ValueError("Required columns 'Product Name'and 'QTY'.")
+                             
 
 
 def calculate_stock(product_list):
@@ -370,12 +372,12 @@ def calculate_stock(product_list):
         qty_in = get_value_by(product_name, 'Product Good In')
         qty_out = get_value_by(product_name, 'Product Good Out')
         stock = qty_in - qty_out
-        
+
         result = [datetime.now().strftime("%m/%d/%Y"), product_name, stock]
         results.append(result)
         print(f"{result[1]} - {result[2]}")  # Display the product stock
 
-    return results  
+    return results
 
 def main():
     """
