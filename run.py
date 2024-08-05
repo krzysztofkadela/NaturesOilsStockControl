@@ -55,7 +55,7 @@ def get_valid_choice(menu_option):
             if 1 <= user_input <= menu_option:
                 return user_input  # Return the valid input
             else:
-                print(f"Invalid input. Use number between 1 and {menu_option}.")
+                print(f"Invalid input.Use number between 1 and {menu_option}.")
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
 
@@ -191,7 +191,8 @@ def update_worksheet(data, worksheet):
         except Exception as e:
             print(f"Failed to append record "
                   "{record_as_list} due to error: {e}")
-      
+
+
 def add_new_product():
     """
     Asking user for updates product list,
@@ -275,6 +276,7 @@ def add_new_product():
 
     return new_product_info
 
+
 def update_worksheet_new_product(new_product, worksheet):
     """
     Taking paramiter with new product info
@@ -285,7 +287,7 @@ def update_worksheet_new_product(new_product, worksheet):
 
     """
     Creating list of data to be added to worksheet
-    """ 
+    """
 
     row = [new_product["current_date"], new_product["product_name"],
            new_product["product_size"], new_product["barcode"]]
@@ -294,18 +296,19 @@ def update_worksheet_new_product(new_product, worksheet):
 
     print("Product list have be updated!")
 
+
 def get_value_by_product_name(product_name, worksheet):
     """
     By taking the product name and worksheet name,
-     it calculates and returns a list includs: 
+     it calculates and returns a list includs:
     'current date',
     'Product Name',
      'QTY'
     """
-    goods_in_data = SHEET.worksheet(worksheet) # depend on workssheet.
+    goods_in_data = SHEET.worksheet(worksheet)  # depend on workssheet.
 
     records = goods_in_data.get_all_records()
-     
+
     df = pd.DataFrame(records)
 
     if 'Product Name' in df.columns and 'QTY' in df.columns:
@@ -316,13 +319,13 @@ def get_value_by_product_name(product_name, worksheet):
         return result
     else:
         raise ValueError("Required columns 'Product Name' "
-                         "and 'QTY' are not in the DataFrame.")  
+                         "and 'QTY' are not in the DataFrame.")
 
 
 def get_value_by_product_name_test(product_name, worksheet):
     """
     By taking the product name and worksheet name,
-     it calculates and returns a list including: 
+     it calculates and returns a list including:
     'current date',
     'Product Name',
     'QTY'
@@ -358,6 +361,7 @@ def get_all_product_values(product_list, worksheet):
 
     return results
 
+
 def get_value_by(product_name, worksheet):
     """
     By taking the product name and worksheet name,
@@ -374,8 +378,7 @@ def get_value_by(product_name, worksheet):
         return qty_sum
     else:
         raise ValueError("Required columns 'Product Name'and 'QTY'.")
-                             
-
+                   
 
 def calculate_stock(product_list):
     """
@@ -394,6 +397,7 @@ def calculate_stock(product_list):
         print(f"{result[1]} - {result[2]}")  # Display the product stock
 
     return results
+
 
 def main():
     """
@@ -440,5 +444,4 @@ def main():
             print("Please select one number from 1 to 4 and pres enter! ")
 
 
-    
 main()
