@@ -102,6 +102,7 @@ def report_meu():
     print("1 - Full Stock By Product")
     print("2 - Total Production")
     print("3 - Total Sale")
+    print("4 - Return")
     user_choice_stock_menu = get_valid_choice(3)  # check valid input
 
     return int(user_choice_stock_menu)  # user choice converted to integer
@@ -272,6 +273,7 @@ def update_worksheet_new_product(new_product,worksheet):
     """ 
 
     row = [new_product["current_date"], new_product["product_name"], new_product["product_size"], new_product["barcode"]]
+        
 
     worksheet_to_update.append_row(row)
 
@@ -335,14 +337,16 @@ def main():
                 update_worksheet_new_product(new_product_data,'Product List')
       elif user_choice == 3:
         while True:
-             choice_II = update_stock_menu()
-             if choice_I == 1 : #choice 1 updtate product goods in
-                data_in = upddate_stock("goods_in", product_list)
-                update_worksheet(data_in, "Product Good In")
-             elif choice_I == 2 : #choice 2 update product goods out
+             choice_II = report_meu()
+             if choice_II == 1 : #choice 1 display stock by product
+                data_in = report_meu() #Function display stock
+                # update_worksheet(data_in, "Product Good In")
+             elif choice_II == 2 : #choice 2 display production for all products
                 data_out = upddate_stock("goods_out", product_list)
                 update_worksheet(data_out, "Product Good Out")
-             elif choice_I == 3:
+             elif choice_II == 3 :# choice 3 display sale values.
+                data_sale    
+             elif choice_II == 4:
                    print("Exiting the menu. Goodbye!")
                    break  # Exit the loop
              else:
