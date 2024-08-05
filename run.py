@@ -341,6 +341,42 @@ def get_all_product_values(product_list, worksheet):
 
     return results
 
+def get_value_by(product_name, worksheet):
+    """
+    By taking the product name and worksheet name,
+    it calculates and returns the quantity for the product.
+    """
+    goods_data = SHEET.worksheet(worksheet)  # depend on worksheet.
+
+    records = goods_data.get_all_records()
+    df = pd.DataFrame(records)
+
+    if 'Product Name' in df.columns and 'QTY' in df.columns:
+        filtered_df = df[df['Product Name'] == product_name]
+        qty_sum = int(filtered_df['QTY'].sum())
+        return qty_sum
+    else:
+        raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")
+
+
+def calculate_stock(product_list):
+    """
+    Takes a list of products
+    and returns a list of product details including the current date,
+    product name, and calculated stock quantity for each product.
+    """
+    results = []
+    for product_name in product_list:
+        qty_in = get_value_by(product_name, 'Product Good In')
+        qty_out = get_value_by(product_name, 'Product Good Out')
+        stock = qty_in - qty_out
+        
+        result = [datetime.now().strftime("%m/%d/%Y"), product_name, stock]
+        results.append(result)
+        print(f"{result[1]} - {result[2]}")  # Display the product stock
+
+    return results  
+
 def main():
     """
     Main function run the program
@@ -367,9 +403,9 @@ def main():
       elif user_choice == 3:
         while True:
              choice_II = report_meu()
-             if choice_II == 1 : #choice 1 display stock by product
-                get_all_product_values(product_list, "Product Good In") #Function display stock
-             elif choice_II == 2 : #choice 2 display production for all products
+             if choice_II == 1 : # choice 1 display stock by product
+                calculate_stock(product_list) # Function display stock
+             elif choice_II == 2 : # choice 2 display production for all products
                 get_all_product_values(product_list, "Product Good In")
              elif choice_II == 3 :# choice 3 display sale values.
                 get_all_product_values(product_list, "Product Good Out")   
@@ -397,14 +433,14 @@ except Exception as e:
     print(f"An error occurred: {e}")
 
 """
-def get_value_by_product_name_in(product_name, worksheet):
+def get_value_by(product_name, worksheet):
     """
     By taking the product name and worksheet name,
-    it calculates and returns the quantity of goods in for the product.
+    it calculates and returns the quantity for the product.
     """
-    goods_in_data = SHEET.worksheet(worksheet)  # depend on worksheet.
+    goods_data = SHEET.worksheet(worksheet)  # depend on worksheet.
 
-    records = goods_in_data.get_all_records()
+    records = goods_data.get_all_records()
     df = pd.DataFrame(records)
 
     if 'Product Name' in df.columns and 'QTY' in df.columns:
@@ -419,14 +455,14 @@ def get_value_by_product_name_in(product_name, worksheet):
 
 def calculate_stock(product_list):
     """
-    Takes a list of products and the names of the goods in and out worksheets,
+    Takes a list of products
     and returns a list of product details including the current date,
     product name, and calculated stock quantity for each product.
     """
     results = []
     for product_name in product_list:
-        qty_in = get_value_by_product_name_in(product_name, 'Product Good In')
-        qty_out = get_value_by_product_name_in(product_name, 'Product Good Out')
+        qty_in = get_value_by(product_name, 'Product Good In')
+        qty_out = get_value_by(product_name, 'Product Good Out')
         stock = qty_in - qty_out
         
         result = [datetime.now().strftime("%m/%d/%Y"), product_name, stock]
