@@ -99,11 +99,10 @@ def report_meu():
     """
     print(" Please choice one of the option")
     print(" ------------------------------")
-    print("1 - Full Stock")
-    print("2 - Stock by product")
-    print("3 - Producttion by day")
-    print("4 - Sale by day")
-    user_choice_stock_menu = get_valid_choice(4)  # check valid input
+    print("1 - Full Stock By Product")
+    print("2 - Total Production")
+    print("3 - Total Sale")
+    user_choice_stock_menu = get_valid_choice(3)  # check valid input
 
     return int(user_choice_stock_menu)  # user choice converted to integer
 
