@@ -92,6 +92,7 @@ def update_stock_menu():
 
     return int(user_choice_stock_menu)  # user choice converted to integer
 
+
 def report_meu():
     """
     Displeys "Report Menu" options
@@ -127,23 +128,23 @@ def upddate_stock(choice, product_list):
         """
 
         for product in product_list:
-
             while True:
-                """
-                Getting values for each product from user
-                """
-                value = input(f"How many of {product} you wants to add to the stock?: \n")
+               """
+               Getting values for each product from user
+               """
+            value = input(f"Many of {product} you wants to add to the stock?: \n")
 
-                try:
-                     numeric_value = int(value) # Attempt to convert the input to a intager.
+            try:
+                numeric_value = int(value) # Attempt to convert the input to a intager.
                      
-                     data_in.append((converted_date, product, numeric_value)) # If the conversion is successful, break the loop
-                     break
-                except ValueError:
+                data_in.append((converted_date, product, numeric_value)) # If the conversion is successful, break the loop
+                break
+            except ValueError:
                      
-                     print("Wrong value. Please enter a valid number.") # If error 
+                 print("Wrong value. Please enter a valid number.") # If error 
 
         return data_in
+
     elif choice == "goods_out":
         data_out = []
         print("Please enter a numeric value for all products quantity.") # Asking user for correct value
@@ -206,7 +207,7 @@ def add_new_product():
     print("           Barode 13 digits and only digits.")
 
     """
-    Collecting current date and formating to neede format YYYY-MM-DD
+    Collecting current date and formating to required format YYYY-MM-DD
     """ 
     current_date_load = datetime.now()
     current_date_new_product = current_date_load.strftime("%Y-%m-%d")
@@ -310,7 +311,6 @@ def full_stock_report():
 
 
 
-
 def main():
     """
     Main function run the program
@@ -318,7 +318,6 @@ def main():
     while True:
       user_choice = main_menu()
       if user_choice == 1:
-         print("You chose Choice 1.")
          while True:
              choice_I = update_stock_menu()
              if choice_I == 1 : #choice 1 updtate product goods in
@@ -336,7 +335,19 @@ def main():
                 new_product_data = add_new_product()
                 update_worksheet_new_product(new_product_data,'Product List')
       elif user_choice == 3:
-         print("You chose Choice 3.")
+        while True:
+             choice_II = update_stock_menu()
+             if choice_I == 1 : #choice 1 updtate product goods in
+                data_in = upddate_stock("goods_in", product_list)
+                update_worksheet(data_in, "Product Good In")
+             elif choice_I == 2 : #choice 2 update product goods out
+                data_out = upddate_stock("goods_out", product_list)
+                update_worksheet(data_out, "Product Good Out")
+             elif choice_I == 3:
+                   print("Exiting the menu. Goodbye!")
+                   break  # Exit the loop
+             else:
+                 print("Invalid choice. Please select a number between 1 and 3.")
       elif user_choice == 4:
         print("Exiting the menu. Goodbye!")
         break  # Exit the loop
@@ -393,12 +404,27 @@ def get_all_product_values(product_list, worksheet):
 
     return results
 
+def calculate_stock(product_list, goods_in_worksheet, goods_out_worksheet):
+    """
+    Takes a list of products and the names of the goods in and out worksheets,
+    and returns a list of product details including the current date,
+    product name, and calculated stock quantity for each product.
+    """
+    results = []
+    for product_name in product_list:
+        qty_in = get_value_by_product_name_in(product_name, goods_in_worksheet)
+        qty_out = get_value_by_product_name_out(product_name, goods_out_worksheet)
+        stock = qty_in - qty_out
+        
+        result = [datetime.now().strftime("%m/%d/%Y"), product_name, stock]
+        results.append(result)
+        print(f"{result[1]} - {result[2]}")  # Display the product stock
 
-# Assuming 'Sheet1' is the name of the worksheet you want to query
-#results = get_all_product_values(product_list, 'Product Good In')
-#for item in results:
- #   print(item)
+    return results   
+
+
+
 value = get_all_product_values(product_list, "Product Good In")
 value_out = get_all_product_values(product_list, "Product Good Out")
 print(value)
-print(value_out)
+#print(value_out)
