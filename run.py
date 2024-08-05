@@ -303,14 +303,43 @@ def get_value_by_product_name(product_name, worksheet):
         raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")   
 
 
-def full_stock_report():
+def get_value_by_product_name_test(product_name, worksheet):
     """
-    Counting actual stock and displays product by product
+    By taking the product name and worksheet name,
+     it calculates and returns a list including: 
+    'current date',
+    'Product Name',
+    'QTY'
     """
-    for products in product_list:
-        get_value_by_product_name(product_name, worksheet)
+    goods_in_data = SHEET.worksheet(worksheet)  # depend on worksheet.
+
+    records = goods_in_data.get_all_records()
+
+    df = pd.DataFrame(records)
+
+    if 'Product Name' in df.columns and 'QTY' in df.columns:
+        filtered_df = df[df['Product Name'] == product_name]
+        qty_sum = int(filtered_df['QTY'].sum())
+
+        result = [datetime.now().strftime("%m/%d/%Y"), product_name, qty_sum]
+        return result
+    else:
+        raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")
 
 
+def get_all_product_values(product_list, worksheet):
+    """
+    Takes a list of products and a worksheet name,
+    and returns a list of product details including
+    current date, product name, and quantity for each product.
+    """
+    results = []
+    for product_name in product_list:
+        product_info = get_value_by_product_name_test(product_name, worksheet)
+        results.append(product_info)
+        print(f"{product_info[1]} - {product_info[2]}")
+
+    return results
 
 def main():
     """
@@ -368,44 +397,27 @@ except Exception as e:
     print(f"An error occurred: {e}")
 
 """
-def get_value_by_product_name_test(product_name, worksheet):
+def get_value_by_product_name_in(product_name, worksheet):
     """
     By taking the product name and worksheet name,
-     it calculates and returns a list including: 
-    'current date',
-    'Product Name',
-     'QTY'
+    it calculates and returns the quantity of goods in for the product.
     """
     goods_in_data = SHEET.worksheet(worksheet)  # depend on worksheet.
 
     records = goods_in_data.get_all_records()
-
     df = pd.DataFrame(records)
 
     if 'Product Name' in df.columns and 'QTY' in df.columns:
         filtered_df = df[df['Product Name'] == product_name]
         qty_sum = int(filtered_df['QTY'].sum())
-
-        result = [datetime.now().strftime("%m/%d/%Y"), product_name, qty_sum]
-        return result
+        return qty_sum
     else:
         raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")
 
-def get_all_product_values(product_list, worksheet):
-    """
-    Takes a list of products and a worksheet name,
-    and returns a list of product details including
-    current date, product name, and quantity for each product.
-    """
-    results = []
-    for product_name in product_list:
-        product_info = get_value_by_product_name_test(product_name, worksheet)
-        results.append(product_info)
-        print(f"{product_info[1]} - {product_info[2]}")
 
-    return results
 
-def calculate_stock(product_list, goods_in_worksheet, goods_out_worksheet):
+
+def calculate_stock(product_list):
     """
     Takes a list of products and the names of the goods in and out worksheets,
     and returns a list of product details including the current date,
@@ -413,8 +425,8 @@ def calculate_stock(product_list, goods_in_worksheet, goods_out_worksheet):
     """
     results = []
     for product_name in product_list:
-        qty_in = get_value_by_product_name_in(product_name, goods_in_worksheet)
-        qty_out = get_value_by_product_name_out(product_name, goods_out_worksheet)
+        qty_in = get_value_by_product_name_in(product_name, 'Product Good In')
+        qty_out = get_value_by_product_name_in(product_name, 'Product Good Out')
         stock = qty_in - qty_out
         
         result = [datetime.now().strftime("%m/%d/%Y"), product_name, stock]
@@ -423,9 +435,9 @@ def calculate_stock(product_list, goods_in_worksheet, goods_out_worksheet):
 
     return results   
 
+calculate_stock(product_list)
 
-
-value = get_all_product_values(product_list, "Product Good In")
-value_out = get_all_product_values(product_list, "Product Good Out")
-print(value)
+#value = get_all_product_values(product_list, "Product Good In")
+#value_out = get_all_product_values(product_list, "Product Good Out")
+#print(value)
 #print(value_out)
