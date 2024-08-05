@@ -339,13 +339,11 @@ def main():
         while True:
              choice_II = report_meu()
              if choice_II == 1 : #choice 1 display stock by product
-                data_in = report_meu() #Function display stock
-                # update_worksheet(data_in, "Product Good In")
+                get_all_product_values(product_list, "Product Good In") #Function display stock
              elif choice_II == 2 : #choice 2 display production for all products
-                data_out = upddate_stock("goods_out", product_list)
-                update_worksheet(data_out, "Product Good Out")
+                get_all_product_values(product_list, "Product Good In")
              elif choice_II == 3 :# choice 3 display sale values.
-                data_sale    
+                get_all_product_values(product_list, "Product Good Out")   
              elif choice_II == 4:
                    print("Exiting the menu. Goodbye!")
                    break  # Exit the loop
