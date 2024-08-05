@@ -46,7 +46,7 @@ def get_valid_choice(menu_option):
     Returns the valid choice if input is valid, otherwise None.
     """
     while True:  # Loop until valid input is received
-        user_input = input("Please enter an integer between 1 and 5: \n")
+        user_input = input(f"Please enter an integer between 1 and {menu_option}: \n")
 
         try:
             # Try to convert the input to an integer
@@ -55,7 +55,7 @@ def get_valid_choice(menu_option):
             if 1 <= user_input <= menu_option:
                 return user_input  # Return the valid input
             else:
-                print("Invalid input. Please enter a number between 1 and 5.")
+                print(f"Invalid input. Please enter a number between 1 and {menu_option}.")
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
 
@@ -425,55 +425,24 @@ def main():
     
 #main()
 
-"""
-try:
-    taco_saue_stock = get_value_by_product_name('Chipotle Sauce', 'Product Good In')
-    print(taco_saue_stock)
-except Exception as e:
-    print(f"An error occurred: {e}")
-
-"""
-def get_value_by(product_name, worksheet):
+def get_valid_choice_test(menu_option):
     """
-    By taking the product name and worksheet name,
-    it calculates and returns the quantity for the product.
+    Prompts the user to enter a choice between 1 and 5.
+    Returns the valid choice if input is valid, otherwise None.
     """
-    goods_data = SHEET.worksheet(worksheet)  # depend on worksheet.
+    while True:  # Loop until valid input is received
+        user_input = input(f"Please enter an integer between 1 and {menu_option}: \n")
 
-    records = goods_data.get_all_records()
-    df = pd.DataFrame(records)
+        try:
+            # Try to convert the input to an integer
+            user_input = int(user_input)
+            # Check if the value is between 1 and 5
+            if 1 <= user_input <= menu_option:
+                return user_input  # Return the valid input
+            else:
+                print(f"Invalid input. Please enter a number between 1 and {menu_option}.")
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
 
-    if 'Product Name' in df.columns and 'QTY' in df.columns:
-        filtered_df = df[df['Product Name'] == product_name]
-        qty_sum = int(filtered_df['QTY'].sum())
-        return qty_sum
-    else:
-        raise ValueError("Required columns 'Product Name' and 'QTY' are not in the DataFrame.")
 
-
-
-
-def calculate_stock(product_list):
-    """
-    Takes a list of products
-    and returns a list of product details including the current date,
-    product name, and calculated stock quantity for each product.
-    """
-    results = []
-    for product_name in product_list:
-        qty_in = get_value_by(product_name, 'Product Good In')
-        qty_out = get_value_by(product_name, 'Product Good Out')
-        stock = qty_in - qty_out
-        
-        result = [datetime.now().strftime("%m/%d/%Y"), product_name, stock]
-        results.append(result)
-        print(f"{result[1]} - {result[2]}")  # Display the product stock
-
-    return results   
-
-calculate_stock(product_list)
-
-#value = get_all_product_values(product_list, "Product Good In")
-#value_out = get_all_product_values(product_list, "Product Good Out")
-#print(value)
-#print(value_out)
+test = get_valid_choice_test(2)
