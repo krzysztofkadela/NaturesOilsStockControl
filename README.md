@@ -1,7 +1,20 @@
-# Geography or Biology
+# Naturest Oils Stock System
 
-Geography or Biology. A quiz enabling the user to test their knowledge of geography or biology.
-The name of the quiz will be changed in the future as new categories are added.
+A small company producing sauces needs a simple, uncomplicated system to control the amount of products in the warehouse.
+Basic tasks:
+
+Adding manufactured products to the stock.
+
+Recording the quantity and type of products shipped from the warehouse.
+
+Adding new products to the main list.
+
+Checking stock levels.
+
+Checking total sales: product - quantity sold.
+
+Checking the total number of manufactured products: product - quantity produced.
+
 
 
 ![Am_I_Responsive](/assets/images/responsive.png)
@@ -53,33 +66,25 @@ The name of the quiz will be changed in the future as new categories are added.
 ### Main Menu:
 ![Main menu](/assets/images/main_menu.png) 
   * Main Menu Contains 4 options:
-    * Update Stock.
-    * Update Product List.
-    * Stock Report.
-    * Finish.
+    * 1 - Update Stock.
+    * 2 - Update Product List.
+    * 3 - Stock Report.
+    * 4 - Finish.
 
 ### Update Stock Menu:
 ![Update menu](/assets/images/update_stock_menu.png)
+  * Update Stock Menu Contains 3 option:
+   * 1 - Goods In
+   * 2 - Goods Out
+   * 3 - Return to Main Menu
 
-   * .
-
-### Questions:
-  ![Questions_section](/assets/images/screenshots/questions_display.png)
-
-   * The questions are displayed in different orders.
-   * Each question contains 4 answers, only one of which is correct.
-   * To move on to the next question, the user must select one of the answers and click the button "Submit Answer".
-
-### Score display :
-   ![Display_results](/assets/images/screenshots/score_display.png)
-   
-   * The section displayed after all questions have been answered.
-   * The section includes:
-     * A headline whose text changes depending on the number of points scored.
-     * Username, if the user does not provide a name, the default value is 'Player'.
-     * Number of incorrect answers.
-     * Number of correct answers.
-     * Restart game button allows you to restart the quiz and return to the "Start" section.
+### Report Menu:
+  ![Report Menu](/assets/images/report_menu.png)
+   * Report Contains 4 Options
+      * 1 - Full Stock By Product.
+      * 2 - Total Production.
+      * 3 - Total Sale.
+      * 4 - Return
 
 
 ## Features coming soon:
@@ -166,9 +171,7 @@ The name of the quiz will be changed in the future as new categories are added.
 ---
 ## Technologies used in the project:
 
- * [HTML5](https://en.wikipedia.org/wiki/HTML5)
- * [CSS3](https://en.wikipedia.org/wiki/CSS)
- * [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+ * [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
  ---
 ## Programs & Libraries Used in project:
 
@@ -217,12 +220,12 @@ The name of the quiz will be changed in the future as new categories are added.
 
 <table>
   <tr>
-    <th>Button</th>
+    <th>User Choice</th>
     <th>Expected Action</th>
     <th>Result</th>
   </tr>
   <tr>
-    <td>Start</td>
+    <td>Choice 1</td>
     <td>Pass to next section</td>
     <td>After pressing 'Start' button game passing to section Choice category.</td>
   </tr>
