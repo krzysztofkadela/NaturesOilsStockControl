@@ -28,11 +28,9 @@ Checking the total number of manufactured products: product - quantity produced.
 ### [Testing](#testing-1)
 * [Validation_reports](#validation-reports)
 * [Manual_Testing](#manual-testing)
-* [Lighthouse_Testing](#lighthouse-testing)
 ### [Deployment](#deployment-1)
 ### [Bugs](#bugs-1)
 ### [Credits](#credits-1)
- * [Media](#media)
  * [Other](#other)
 ---
 
@@ -77,57 +75,29 @@ Checking the total number of manufactured products: product - quantity produced.
  * Main menu :
     * From the main menu you can select 4 basic options after pressing the appropriate number on the keyboard and  
       pressing 'ENTER', the application will go to the next section or will exit the program(4).
-       * After selecting option no. 1, the program will open a menu that will give you the option of updating stock levels.
-        * 
-
-
-
-
-       * By selecting the option number 2  you can add another product to the list of products produced in Natures Oils, to do 
+      * After selecting option no. 1, the program will open a menu that will give you the option of updating stock levels.
+        * Update Stock Menu:
+          * '1' -  The program will display all products one by one with a question asking how many pieces to add to the warehouse.
+          * '2' - Displays all products individually with a question asking how many pieces were sent out.   
+          * '3' - Selecting the third option will return you to the previous menu.
+      * By selecting the option number 2  you can add another product to the list of products produced in Natures Oils, to do 
          this you need to follow some rules which will be displayed in the terminal:
-         * Type and number of characters you can use when entering a new product name.
-         * The right size, choose from the size list.
-         * Appropriate barcode length.
-     
- * Functions :
+        * Type and number of characters you can use when entering a new product name.
+        * The right size, choose from the size list.
+        * Appropriate barcode length.
+      * Option 3  report options:
+        * '1' - After selecting this option, the current stock status for each product will be displayed.
+        * '2' - Total number of products produced for each of the list.
+        * '3' - Total number of products sold.
+        * '4' - Return to previous menu
 
-    * Function startQuiz(quizType) 
-      * A function that takes the value of the "quizType" variable and, 
-      * depending on the selected category, calls the appropriate function that displays questions.
-      * By adding an appropriate class, it hides unnecessary elements and displays elements with questions.
+### Data storage :
+   * The app uses 'Google Sheets to store all data:
+      * the application uses the information stored in the worksheets:
+        * product list: 
+        - ![Product List](/assets/images/product_list_worksheet.png)
 
-   * Function setQuestionsInRandomPositions() (this function is not in use any more)
-      * Sets question numbers in random order and returns an array with these numbers.
-
-   * Functions  loadGeoQuestions() and loadBioQuestions()
-      * Invokes a function deselectAnswers() set all answers to unselected.
-      * Take the first question from the geography/biology quiz and assigns it to a variable currentQuizData.
-      * Displays question and answer changing 'innerText' property for each element.
-
-   * Function deselectAnswers()
-      * Unselect all selected answers.
-
-   * Function function submitAnswer()
-      * Function using property '.forEach' checks which answer has been selected and assigns the id value to the 'answer' variable.
-
-   * Function displayScore(score, name)
-      * The function takes two parameters 'score' - good answers and 'name' the player's name.
-      * If the value of 'name' is an empty string, it sets the player's name to 'Player', otherwise it outputs the name provided by the user.
-      * The next condition checks the number of correct answers and, depending on the result, displays the equivalent comment.
-
-   * Function restartGame()  
-     * function restarts the game(quiz).
-     * Sets the necessary variables to the output values.
-     * Hide all items and displays the Start section to start the game again.
-
-   * Function cleareInput()  
-     * A small function that sets the value of the element with id 'myInput'(user name input box) to an empty string. 
-
-   * Function function randomQuestions()
-     * Function responsible for displaying five of 10 questions in random order without repeating the questions..
-     * Checks whether the numbers are not repeated.
-     * Saves in a variable 'questionsRandomOrder' (array).
-     * Returns an array with five numbers. 
+   
 
 ---
 ## Technologies used in the project:
@@ -139,20 +109,19 @@ Checking the total number of manufactured products: product - quantity produced.
  * [Gitpod](https://www.gitpod.io/)
     * To write the code.
  * [Github](https://github.com/)
-    * Deployment of the website and storing the files online.
-* [Am I Responsive](https://ui.dev/amiresponsive)
+    * Storing the files online.
+ * [Heroku](https://heroku.com)
+    * To deploy project.
+ * [Am I Responsive](https://ui.dev/amiresponsive)
     * Screenshots for README.md file.
 ---
 ## Testing:
- * In order to check whether the code does not contain errors, 
-
-
 
 ### Validation reports:
-   
+  * ![Valid](/assets/images/validator.png)
+
+  * No errors.
   
-
-
 ### Manual Testing:
 
 <table>
@@ -190,13 +159,21 @@ Checking the total number of manufactured products: product - quantity produced.
 
 ## Deployment:
 
-### The page was deployed on GitHub.com:
+### This app was deployed using Code Institute's mock terminal for Heroku
 
    #### Simple steps:
 
-   * Log in to [Github](https://github.com/).
+   * Fork or clone this repository
+   * Create a new Heroku app
+   * Set the build packs to Python and NodeJs in that order
+   * Link the heroku app to the repository
+   * Click on Deploy
    * Live "Natures Oils Stock System" app you can find by clicking this link:
      [heroku](https://naturesoilsstock-9ab4d188a6d6.herokuapp.com/)
+
+
+## Bugs Detected:
+  * 
   
 ## Unfixed Bugs:
   * All detected bugs have been fixed.
@@ -204,6 +181,6 @@ Checking the total number of manufactured products: product - quantity produced.
 ## Credits:
   *  To check the correct operation of most functions, the following was used:
      [Python Tutor](https://pythontutor.com/visualize.html#mode=edit)
-  * 
+  *  Google sheets to store data.
 ### Other:
    * Much of the information about python was obtained from https://www.w3schools.com/python/.
