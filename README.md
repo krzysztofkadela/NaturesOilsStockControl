@@ -29,7 +29,7 @@ Checking the total number of manufactured products: product - quantity produced.
 * [Validation_reports](#validation-reports)
 * [Manual_Testing](#manual-testing)
 ### [Deployment](#deployment-1)
-### [Bugs](#bugs-1)
+### [Bugs Detected](#bugs-detected-1)
 ### [Credits](#credits-1)
  * [Other](#other)
 ---
@@ -93,18 +93,21 @@ Checking the total number of manufactured products: product - quantity produced.
 
 ### Data storage :
    * The app uses 'Google Sheets to store all data:
-      * the application uses the information stored in the worksheets:
-        * product list: 
-        - ![Product List](/assets/images/product_list_worksheet.png)
-
-   
+      * "Product list" worksheet store all products name, size and barcode, can be update by user: 
+        ![Product List](/assets/images/product_list_worksheet.png)
+      * "Product Size" list worksheet, can't be update from app by user:
+        ![Product Size](/assets/images/product_size_list.png)
+      * "Quantity In" worksheet, store inputs from user about production for each product.
+        ![Quantity In](/assets/images/goods_in_worksheet.png)
+      * "Quantity Out" worksheet to store all inputs for products send out from warehouse.
+        ![Quantity Out](/assets/images/qty_out_worksheet.png)
 
 ---
 ## Technologies used in the project:
 
  * [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
  ---
-## Programs & Libraries Used in project:
+## Programs Used in project:
 
  * [Gitpod](https://www.gitpod.io/)
     * To write the code.
@@ -128,34 +131,56 @@ Checking the total number of manufactured products: product - quantity produced.
   <tr>
     <th>User Choice</th>
     <th>Expected Action</th>
-    <th>Result</th>
+    <th>Result Correct Input</th>
+    <th>Result In Correct Input</th>
   </tr>
   <tr>
-    <td>Choice 1</td>
-    <td>Pass to next section</td>
-    <td>After pressing 'Start' button game passing to section Choice category.</td>
+    <td>Main Menu Choice 1</td>
+    <td>Pass to section Update Stock</td>
+    <td>Number 1 and Enter section UpdateStock Open</td>
+    <td>Letter 'A', Number 5 warning and question for correct input.</td>
   </tr>
   <tr>
-    <td>Geography</td>
-    <td>Start Geography quize, display questions.</td>
-    <td>Geography questions displayed.</td>
+    <td>Main Menu Choice 2</td>
+    <td>Pass to section "Update Product List".</td>
+    <td>Number 2 pick, correct section open.</td>
+    <td>Rendom String inputed, warning and question for correct input .</td>
   </tr>
   <tr>
-    <td>Biology</td>
-    <td>Start Biology quize, display questions.</td>
-    <td>Biology questions displayed.</td>
+    <td>Main Menu Choice 3</td>
+    <td>Pass to section "Stock Report"</td>
+    <td>Number 3 pick, correct section open.</td>
+    <td>Number 10 choose , wrong number warning appear.</td>
   </tr>
   <tr>
-    <td>Submit Answer</td>
-    <td>After user set answer , passing to next question.</td>
-    <td>Next question displayed.</td>
+    <td>Main Menu Choice 4</td>
+    <td>Close program.</td>
+    <td>Affter choose '4' program finish.</td>
+    <td>Letter q , wrong input warning, "please chose number from 1-4" appear.</td>
   </tr>
   <tr>
-    <td>Restar Game</td>
-    <td>Restart Quize , display fierst page and reset quiz.</td>
-    <td>Game restart.</td>
+    <td>Update Stock Menu</td>
+    <td>Choose 1/2 open correct section.</td>
+    <td>After pick nuber 1 or 2 correct secton open.</td>
+    <td>Wrong input, like string or number biger then 3, warning apears all working ok.</td>
   </tr>
+  <tr>
+    <td>Report Menu</td>
+    <td>Choose 1/2/ print to the terminal correct report.</td>
+    <td>With correct inputs all reports were printed correctly, and number 4 returned to main menu.</td>
+    <td>Wrong input, like string or number biger then 3, warning apears all working ok.</td>
+  </tr>
+
 </table>
+
+* Testing correct inputs and worksheet update for Product List:
+  * Product Name, max 20 characters and using only letters and space, working correctly.
+  * Product Name Size chose only from the list working correct, wrong input warning apears.
+  * Product barcode: 13 characters and only numbers after wrong input warning to use correct values.
+  * After all inputs are correct Product List worksheets are updated correctly, and new products are added to the list.
+* Testing correct inputs and worksheet update for Goods In and Goods Out.
+  * App displaying all products one by one and asking for numbers only, warning if incorrect input.
+  * After all quantitys are collected, worksheets correctly updated.
 
 ## Deployment:
 
@@ -173,7 +198,10 @@ Checking the total number of manufactured products: product - quantity produced.
 
 
 ## Bugs Detected:
-  * 
+  * When testing the function  "update_stock(choice, product_list)" and function "update worksheet()",
+    there was a problem with the correct data being retrieved from the "Tuple" that the first function returned.
+    The worksheet was not updated and a message about incorrect data appeared.
+  * The problem was solved by changing the 'Tuple' to a 'List' and converting the numeric input to integer.
   
 ## Unfixed Bugs:
   * All detected bugs have been fixed.
